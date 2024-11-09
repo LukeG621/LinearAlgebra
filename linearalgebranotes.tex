@@ -1,0 +1,2891 @@
+\documentclass{report}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{fullpage}
+\usepackage{xcolor}
+\usepackage{tikz, tcolorbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{evan}
+\usepackage{bm}
+\usepackage{mathtools}
+
+\definecolor{lightred}{rgb}{1.0, 0.4, 0.4} % RGB values for light red
+
+
+
+\title{Linear Algebra Notes}
+\author{Luke Greenawalt}
+\date{Fall 2024}
+
+
+
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\chapter{Unit 1}
+\section{Gaussian Elimination and Gauss-Jordan Elimination}
+
+\subsection{All the Basic Theory}
+
+\begin{tcolorbox}[title = Definition of a Matrix]
+ 	If $m$ and $n$ are positive integers, then an $m \times n$ (read "$m$ by $n$") matrix is a rectangular array:
+
+$$
+\begin{bmatrix}
+    a_{11} & a_{12} & a_{13} & \cdots & a_{1n} \\
+    a_{21} & a_{22} & a_{23} & \cdots & a_{2n} \\
+    a_{31} & a_{32} & a_{33} & \cdots & a_{3n} \\
+    \vdots & \vdots & \vdots & \vdots & \vdots \\
+    a_{m1} & a_{m2} & a_{m3} & \cdots & a_{mn} 
+\end{bmatrix}
+$$\\
+
+
+\noindent in which entry, $a_{ij}$, of the matrix is a number. An $m \times n$ matrix has $m$ rows and $n$ columns. Matrices are usually denoted by capital letters.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[title= Elementary Row Operations] 
+	You can think of elementary row operations in the same way that you can think of operations on a systems of equations. You can:
+
+\begin{enumerate}
+    \item Interchange two rows
+    \item Multiply a row by a nonzero constant
+    \item Add a multiple of a row to another row
+\end{enumerate}
+
+\end{tcolorbox}
+\begin{tcolorbox}[title=Row-Echelon Form and Reduced Row-Echelon Form]
+	A matrix in \textbf{row-echelon form} has the properties below:
+
+\begin{enumerate}
+    \item Any row consisting entirely of zeros occur at the bottom of the matrix
+    \item For each row that does not consist entirely of zeros, the first nonzero entry is $1$ (called a \textbf{leading one}
+    \item For two successive (nonzero) rows, the leading $1$ in the higher row is farther to the left than the leading $1$ in the lower row
+\end{enumerate}
+
+\noindent A matrix in row-echelon form is in \textbf{reduced row-echelon form} when every column that has a leading 1 has zeros in every position above and below its leading 1.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Gaussian Elimination with Back Substitution]
+	
+\begin{enumerate}
+    \item Write the augmented matrix of the system of linear equations
+    \item Use elementary row operations to rewrite the system in row-echelon form
+    \item Write the system of linear equations corresponding to the matrix in row-echelon form, and use back-substitution to find the solution
+\end{enumerate}
+
+\noindent \textbf{Note:} In Gaussian elimination, you apply elementary row operations to obtain row-echelon form while Gauss-Jordan elimination is when you continue until you have reduced row-echelon form.\\
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Homogeneous System of Equations]
+	These are systems in which each constant term is zero. For instance:
+
+$$
+3x+4y=0
+$$
+
+$$
+4x-7y=0
+$$
+
+\noindent In a homogeneous system of three variables, $x_1$, $x_2$, and $x_3$ has the trivial solution $x_1 = 0$, $x_2 = 0$, and $x_3 = 0$.
+
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	Use back substitution to solve the system:
+	$$
+	x-4y+z=28
+	$$
+	$$
+	y+4z= 14
+	$$
+	$$
+	z = 3
+	$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[colframe = lightred]
+Solve the system. If there are infinitely many solutions, parameterize them using $t$
+$$
+2x_1 + 3x_2 - 4x_3 = 16
+$$
+$$
+x_1 - 3x_2 + 16x_3 = 32
+$$
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the solution set of the system of linear equations represented by the augmented matrix
+	
+	$$
+	\begin{bmatrix}
+		2 & 3 & 2 & 0 \\
+		0 & 0 & 1 & -2 \\
+		0 & 0 & 0 & 0
+	\end{bmatrix}
+	$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[colframe = lightred]
+	Solve the system using either Gaussian elimination with back-substitution or Gauss-Jordan elimination
+	
+	$$
+	x+3y=-4
+	$$
+	
+	$$
+	-x-3y=4
+	$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[colframe = lightred]
+		Determine the polynomial that passes through the points $(0,0)$, $(1,-1)$ $(5,0)$
+\end{tcolorbox}
+
+\begin{tcolorbox}[colframe = lightred]
+		Solve the partial fraction decomposition using matrices 
+		$$
+		\frac{x+2}{x(x-1)^2} = \frac{A}{x} + \frac{B}{x-1} + \frac{C}{(x-1)^2}
+		$$
+\end{tcolorbox}
+
+
+\chapter{Unit 2}
+
+\section{Operations with Matrices}
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definition of Equality of Matrices]
+	Two matrices $A = \left[ a_{ij} \right]$ and $B= \left[ b_{ij} \right]$ are \textbf{equal} when they have the same size $(m \times n)$ and $\left[ a_{ij} \right] = \left[ b_{ij} \right]$ for $1 \le i \le m$ and $1 \le j \le n$.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Matrix Addition]
+	 If $A=\left[ a_{ij} \right]$ and $B=\left[ b_{ij} \right]$ are matrices of size $m \times n$, then their \textbf{sum} is the $m \times n$ matrix $A+B = \left[ a_{ij} + b{ij} \right]$
+	 
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Scalar Multiplication]
+	 If $A = \left[ a_{ij} \right]$ is an $m \times n$ matrix and $c$ is a scalar, then the \textbf{scalar multiple} of $A$ by $c$ is the $m \times n$ matrix $cA = \left[ ca_{ij} \right]$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Matrix Multiplication]
+	If $A = \left[ a_{ij} \right]$ is an $m \times n$ matrix and $B = \left[ b_{ij} \right]$ is an $n \times p$ matrix, then the \textbf{product} $AB$ is an $m \times p$ matrix
+	
+	$$
+	AB = \left[ c_{ij} \right]
+	$$
+	
+	where 
+	
+	$$
+	c_{ij} = \sum_{k=1}^n a_{ik} b_{kj} = a_{i1} b_{1j} + a_{i2}b_{2j} + a_{i3} b_{3j} + \hdots + a_{in} b_{nj}
+	$$
+	
+\end{tcolorbox}
+
+
+\subsection{Systems of Linear Equations}
+
+One practical application of matrix multiplication is representing a system of linear equations. Note how the system
+
+$$
+a_{11} x_1 + a_{12} x_2 + a_{13} x_3 = b_1
+$$
+
+$$
+a_{21} x_1 + a_{22} x_2 + a_{23} x_3 = b_2
+$$
+
+$$
+a_{31} x_1 + a_{32} x_2 + a_{33} x_3 = b_3
+$$
+
+\noindent can be written as the matrix equation $Ax=b$, where $A$ is the coefficient matrix of the system, and $x$ and $b$ are column matrices.\\
+
+\[
+\begin{bmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} 
+\end{bmatrix}
+\begin{bmatrix}
+    x_1 \\
+    x_2 \\
+    x_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+    b_1 \\
+    b_2 \\
+    b_3
+\end{bmatrix}
+\]\\
+
+\subsection{Linear Combinations of Column Vectors}
+
+The matrix $Ax$ is a linear combination of of the column vectors $a_1,a_2,a_3,\hdots, a_n$ that form the coefficient matrix $A$.
+
+\[
+x_1 
+\begin{bmatrix}
+a_{11}\\
+a_{21}\\
+\vdots \\
+a_{m1}
+\end{bmatrix} 
++
+x_2 
+\begin{bmatrix}
+a_{12}\\
+a_{22}\\
+\vdots \\
+a_{m2}
+\end{bmatrix} 
++
+\hdots
++
+x_n 
+\begin{bmatrix}
+a_{1n}\\
+a_{2n}\\
+\vdots \\
+a_{mn}
+\end{bmatrix} 
+\]\\
+
+\noindent Furthermore, the system $Ax=b$ is consistent if and only if $b$ can be expressed as such a linear combination, where the coefficients of the linear combination are a solution of the system.
+
+\section{Properties of Matrix Operations}
+
+\subsection{Theory}
+
+\paragraph{Properties of Matrix Addition and Scalar Multiplication} If $A$, $B$, and $C$ are $m \times n$ matrices, and $c$ and $d$ are scalars, then the properties below are true.
+
+\begin{enumerate}
+    \item $A +B = B + A$
+    \item $A + (B+C) = (A+B) + C$
+    \item $(cd)A = c(dA)$
+    \item $1A = A$
+    \item $c(A+B) = cA + cB$
+    \item $(c+d)A = cA + dA$
+\end{enumerate}
+
+\paragraph{Properties of Zero Matrices} If $A$ is an $m \times n$ matrix and $c$ is a scalar, then the properties below are true.
+\begin{enumerate}
+    \item $A + O_{mn} = A$
+    \item $A + (-A) = O_{mn}$
+    \item If $cA = O_{mn}$, then $c=0$ or $A=O_{mn}$
+\end{enumerate}
+
+\paragraph{Properties of Matrix Multiplication} If $A$, $B$, and $C$ are matrices (with sizes such that the matrices are defined), and $c$ is a scalar, then the properties below are true.
+
+\begin{enumerate}
+    \item $A(BC) = (AB)C$
+    \item $A(B+C) = AB + BC$
+    \item $(A+B)C = AC + BC$
+    \item $c(AB) = (cA)B = A(cB)$
+\end{enumerate}
+
+\paragraph{Properties of the Identity Matrix} If $A$ is a matrix of size $m \times n$, then the properties below are true.
+
+\begin{enumerate}
+    \item $AI_n = A$
+    \item $I_m A = A$
+\end{enumerate}
+
+\paragraph{Number of Solutions of a Linear System} For a system of linear equations, precisely one of the statements below is true.
+\begin{enumerate}
+    \item The system has exactly one solution
+    \item The system has infinitely many solutions
+    \item The system has no solution
+\end{enumerate}
+
+\paragraph{Transpose of a Matrix and Symmetric Matrices} The \textbf{transpose} of a matrix changes all rows into columns and vice versa.
+
+\paragraph{Properties of Transposes} If $A$ and $B$ are matrices (with sizes such that the matrix operations are defined) and $c$ is a scalar, then the properties below are true.
+
+\begin{enumerate}
+    \item $\left(A^T\right)^T = A$
+    \item $\left( A + B \right) ^ T = A^T + B^T$
+    \item $\left(cA\right)^T = c\left(A^T\right)$
+    \item $(AB)^T = B^TA^T$
+\end{enumerate}
+
+
+\section{The Inverse of a Matrix}
+
+\subsection{Theory}
+
+\paragraph{Definition of an Inverse Matrix} An $n \times n$ matrix $A$ is \textbf{invertible} (or \textbf{nonsingular}) when there exists an $n \times n$ matrix $B$ such that
+
+$$
+AB = BA = I_n
+$$
+
+\noindent where $I_n$ is the identity matrix of order $n$. The matrix $B$ is the (multiplicative) \textbf{inverse} of $A$. A matrix that does not have an inverse is \textbf{noninvertible} (or \textbf{singular}).
+
+\paragraph{Uniqueness of an Inverse Matrix}
+
+If $A$ is an invertible matrix, then its inverse is unique. The inverse of $A$ is denoted by $A^{-1}$
+
+\paragraph{Find the Inverse of a Matrix by Gauss-Jordan Elimination}
+
+Let $A$ be a square matrix of order $n$.
+
+\begin{enumerate}
+    \item Write the $n \times 2n$ matrix that consists of $A$ on the left and the $n \times n$ identity matrix $I$ on the right to obtain $\left[A,I\right]$. This process is \textbf{adjoining} matrix $I$ to matrix $A$.
+
+    \item If possible, row reduce $A$ to $I$ using elementary row operations on the entire matrix $[A,I]$. The result will be the matrix $[I A^{-1}]$. If this is not possible, then $A$ is noninvertible (or singular).
+
+    \item Check your work by multiplying $A A^{-1} = I = A^{-1}A$
+
+\end{enumerate}
+
+\paragraph{Shortcut for finding the inverse of a $2\times2$ matrix} If $A$ is a $2 \times 2$ matrix
+
+\[
+A
+=
+\begin{bmatrix}
+    a & b \\
+    c & d
+\end{bmatrix}
+\]
+
+\noindent then $A$ is invertible if and only if $ad-bc \ne 0$. Moreover, if $ad-bc \ne 0$, then the inverse is
+
+\[
+A^{-1}
+=
+\frac{1}{ad-bc}
+\begin{bmatrix}
+    d & -b\\
+    -c & a
+\end{bmatrix}
+\]
+
+\paragraph{Properties of Inverse Matrices}
+
+If $A$ is an invertible matrix, $k$ is a positive integer, and $c$ is a nonzero scalar, then $A^{-1}$, $A^k$, $cA$, and $A^T$ are invertible and the statements below are true.
+
+\begin{enumerate}
+    \item $(A^{-1})^{-1} = A$
+    \item $\left( A^k \right) ^{-1} = A^{-1}A^{-1}A^{-1} \hdots A^{-1} = \left( A^{-1} \right) ^ k$
+    \item $\left( cA \right)^{-1} = \frac{1}{c} A^{-1}$
+    \item $\left( A^T \right)^{-1} = \left( A^{-1} \right)^T$
+\end{enumerate}
+
+\paragraph{The Inverse of a Product}
+If $A$ and $B$ are the invertible matrices of order $n$, then $AB$ is invertible and 
+
+$$
+(AB)^{-1} = B^{-1}A^{-1}
+$$
+
+\paragraph{Cancellation Properties} 
+If $C$ is an invertible matrix, then the properties below are true.
+
+\begin{enumerate}
+    \item If $AC=BC$, then $A=B$ $\implies$ Right cancellation property
+    \item If $CA = CB$, then $A=B$ $\implies$ Left cancellation property
+\end{enumerate}
+
+\paragraph{Systems of Equations with Unique Solutions}
+If $A$ is an invertible matrix, then the system of linear equations $Ax=b$ has a unique solution $x=A^{-1}b$
+
+\section{Elementary Row Operations}
+
+\subsection{Theory}
+
+\paragraph{Definition of an Elementary Matrix} An $n \times n$ matrix is an \textbf{elementary matrix} when it can be obtained from the identity matrix $I_n$ by a single elementary row operation
+
+\paragraph{Remark} The identity matrix $I_n$ is elementary by this definition because it can obtained from multiplying any one of its' rows by 1.
+
+\paragraph{Representing Elementary Row Operations} Let $E$ be the elementary matrix obtained by performing an elementary row operation on $I_m$. If that same elementary row operation is performed on an $m \times n$ matrix $A$, then the resulting matrix is the product $EA$.
+
+\paragraph{Definition of Row Equivalence} Let $A$ and $B$ be $m \times n$ matrices. Matrix $B$ is \textbf{row-equivalent} to $A$ when there exists a finite number of elementary matrices $E_1, E_2, \hdots, E_k$ such that 
+
+$$
+B = E_k E_{k-1} \hdots E_2 E_1 E_A
+$$
+
+\paragraph{Elementary Matrices are Invertible} If $E$ is an elementary matrix, then $E^{-1}$ exists and is an elementary matrix.
+
+\paragraph{A Property of Invertible Matrices} A square matrix $A$ is invertible if and only if it can be written as the product of elementary matrices.
+
+\paragraph{Equivalent Conditions} If $A$ is an $n \times n$ matrix, then the statements below are equivalent:
+
+\begin{enumerate}
+    \item $A$ is invertible
+    \item $Ax=b$ has a unique solution for every $n \times 1$ column matrix $b$
+    \item $Ax = 0$ has only the trivial solution
+    \item $A$ is row-equivalent to $I_n$
+    \item $A$ can be written as the product of elementary matrices
+\end{enumerate}
+
+\section{Markov Chains}
+\subsection{Theory}
+
+\[ 
+P
+=
+\begin{bmatrix}
+    p_{11} & p_{12} & \hdots & p_{1n}\\
+    p_{21} & p_{22} & \hdots & p_{2n} \\
+    \vdots & \vdots & \vdots & \vdots \\
+    p_{n1} & p_{n2} & \hdots & p_{nn} \\
+\end{bmatrix}
+\]\\
+
+$P$ is called the \textbf{matrix of transition probabilities} because it gives the probabilities of each possible type of transition (or change) within the population. At each transition, each member in a given state must either stay in that state or change to another state. For probabilities, this means that the sums of the entries in any column of $P$ is 1. For instance, in the first column
+
+$$
+p_{11} + p_{21} + \hdots + p_{n1} = 1
+$$\\
+
+Such a matrix is called \textbf{stochastic} (the term "stochastic" means "regarding conjecture"). That is, an $n \times n$ matrix $P$ is a \textbf{stochastic matrix} when each entry is a number between 0 and 1 inclusive, and the sum of the entries in each column of $P$ is 1.
+
+\paragraph{Finding the Steady State of a Matrix of a Markov Chain}
+\begin{enumerate}
+    \item Check to see that the matrix of transition probabilities $P$ is a regular matrix
+    \item Solve the system of linear equations obtained from the matrix equation $P\bar{X} = \bar{X}$ along with the equation $x_1 + x_2 + \hdots + x_n = 1$
+    \item Check the solution in step 2 in the matrix equation $P \bar{X} = \bar{X}$
+\end{enumerate}
+
+\paragraph{Remark} If $P$ is not regular, then the corresponding Markov chain may or may not have a unique steady state matrix
+
+\paragraph{Definition of Regular Stochastic Matrix} A stochastic matrix $P$ is regular when some power of $P$ has only positive entries
+
+\section{Cryptography and Regression Analysis}
+\subsection{Theory}
+
+A \textbf{cryptogram} is a message written according to a secret code (the Greek word kryptos means "hidden"). One method of using matrix multiplication to \textbf{encode} and \textbf{decode} messages is introduced below. First, start by assigning each number:
+
+$$
+\begin{matrix}
+    {0 = \textunderscore} & {9 = I} & {18 = R} \\
+    {1 = A} & {10 = J} & {19 = S} \\
+    {2 = B} & {11 = K} & {20 = T} \\
+    {3 = C} & {12 = L} & {21 = U} \\
+    {4 = D} & {13 = M} & {22 = V} \\
+    {5 = E} & {14 = N} & {23 = W} \\
+    {6 = F} & {15 = O} & {24 = X} \\
+    {7 = G} & {16 = P} & {25 = Y} \\
+    {8 = H} & {17 = Q} & {26 = Z} \\
+\end{matrix}
+$$\\
+
+Then convert the message to numbers and partition it into \textbf{uncoded row matrices}, each having $n$ entries.
+
+\paragraph{Least Squares Regression Analysis} For the regression model $Y = XA + E$, the coefficients of the least squares are given by the matrix equation
+
+
+\[
+Y
+=
+\begin{bmatrix}
+    y_1\\
+    y_2\\
+    \vdots \\
+    y_n
+\end{bmatrix}
+X
+=
+\begin{bmatrix}
+    1 & x_1 \\
+    1 & x_2 \\
+    \vdots & \vdots \\
+    1 & x_n
+\end{bmatrix}
+E
+=
+\begin{bmatrix}
+    e_1 \\
+    e_2 \\ 
+    \vdots \\
+    e_n
+\end{bmatrix}
+\]
+
+
+$$
+A = \left( X^TX \right)^{-1} X^T Y
+$$
+
+\noindent and the sum of squared error is $E^T E$
+
+\chapter{Unit 3}
+
+\section{The Determinant of a Matrix}
+
+\subsection{Theory}
+
+\paragraph{Definition of the Determinant of a $2 \times 2$ Matrix} The \textbf{determinant} of the matrix
+
+\[
+A
+=
+\begin{bmatrix}
+    a_{11} & a_{12} \\
+    a_{21} & a_{22}
+\end{bmatrix}
+\]
+
+\noindent is $\det{A} = | A | = a_{11}a_{22} - a_{21}a_{12}$
+
+\paragraph{Minors and Cofactors of a Square Matrix} If $A$ is a square matrix, then the \textbf{minor} $M_{ij}$ of the entry $a_{ij}$ is the determinant of the matrix obtained by deleting the $i$th row and $j$th column of $A$. The \textbf{cofactor} $C_{ij}$ of the entry $a_{ij}$ is 
+
+$$
+C_{ij} = (-1)^{i+j} M_{ij}
+$$
+
+\paragraph{Sign Patterns for Cofactors}
+
+\begin{itemize}
+    \item $3 \times 3$ matrix:
+    \[
+    \begin{bmatrix}
+        + & - & + \\
+        - & + & - \\
+        + & - & + \\
+    \end{bmatrix}
+    \]
+
+    \item $4 \times 4$ matrix:
+    \[
+    \begin{bmatrix}
+        + & - & + & - \\
+        - & + & - & + \\
+        + & - & + & - \\
+        - & + & - & + 
+    \end{bmatrix}
+    \]
+\end{itemize}
+
+\paragraph{Definition of the Determinant of a Square Matrix} If $A$ is a square matrix of order $n \ge 2$, then the determinant $A$ is the sum of the entries in the first row of $A$ multiplied by their respective cofactors. That is,
+
+$$
+\det(A) = |A| = \sum_{i=1}^{n} a_{1j}C_{1j} = a_{11}C_{11} + a_{12}C_{12} + \hdots + a_{1n}C_{1n}
+$$
+
+\paragraph{Determinant of a Triangular Matrix} If $A$ is a triangular matrix of order $n$, then its determinant is the product of the entries on the main diagonal. That is,
+
+$$
+\det{A} = A = a_{11}a_{22}a_{33} \hdots a_{nn}
+$$
+
+\section{Determinants and Elementary Operations}
+\subsection{Theory}
+
+\paragraph{Elementary Row Operations and Determinants}
+Let $A$ and $B$ be square matrices:
+
+\begin{enumerate}
+    \item When $B$ is obtained from $A$ by interchanging two rows of $A$, $\det{B} = -\det{A}$
+    \item When $B$ is obtained from $A$ by adding  a multiple of a row of $A$ to another row of $A$, $\det{B} = \det{A}$
+    \item When $B$ is obtained from $A$ by multiplying a row of $A$ by a nonzero constant $c$, $\det{B}=c\det{A}$
+\end{enumerate}
+
+\paragraph{Conditions that Yield a Zero Determinant} If $A$ is a square matrix and any one of the conditions below is true, then $\det{A}=0$.
+\begin{enumerate}
+    \item An entire row (or entire column) consists of zeros.
+    \item Two rows (or columns) are equal
+    \item One row (or column) is a multiple of another row (or column)
+\end{enumerate}
+
+\section{Properties of Determinants}
+
+\paragraph{Determinant of a Matrix Product} If $A$ and $B$ are square matrices of order $n$, then $\det{AB} = \det{A}\det{B}$
+
+\paragraph{Determinant of a Scalar Multiply of a Matrix} If $A$ is a square matrix of order $n$ and $c$ is a scalar, then the determinant of $cA$ is 
+
+$$
+\det{cA} = c^n \det{A}
+$$
+
+\paragraph{Determinant of an Invertible Matrix} A square matrix $A$ is invertible (non-singular) if and only if $\det{A} \ne 0$
+
+\paragraph{Determinant of an Inverse Matrix} If $A$ is an $n \times n$ invertible matrix, then $\det{A^{-1}} = \frac{1}{\det{A}}$
+
+\paragraph{Equivalent Conditions for a Nonsingular Matrix} If $A$ is an $n \times n$ matrix, then the statements below are equivalent.
+
+\begin{enumerate}
+    \item $A$ is invertible
+    \item $Ax=b$ has a unique solution for every $n \times 1$ column matrix $b$
+    \item $Ax=0$ has only the trivial solution
+    \item $A$ is row-equivalent to $I_n$
+    \item $A$ can be written as the product of elementary matrices
+    \item $\det{A} \ne 0$
+\end{enumerate}
+
+\paragraph{Determinant of a Transpose} If $A$ is a square matrix, then
+
+$$
+\det{A} = \det{A^T}
+$$
+
+\section{Applications of Determinants}
+
+\subsection{Theory}
+
+Recall that the cofactor $C_{ij}$ of a square matrix is $(-1)^{i+j}$ times the determinant of the matrix obtained by deleting the $i$th row and $j$th column of $A$. The \textbf{matrix of cofactors} of $A$ has the form
+
+$$
+\begin{bmatrix}
+    C_{11} & C_{12} & \hdots & C_{1n} \\
+    C_{21} & C_{22} & \hdots & C_{2n} \\
+    \vdots & \vdots & \vdots & \vdots \\
+    C_{n1} & C_{n2} & \hdots & C_{nn}
+\end{bmatrix}
+$$\\
+
+\noindent The transpose of this matrix is the \textbf{adjoint} of $A$ and is denoted $\operatorname{adj}{\left(A\right)}$. That is,
+
+$$
+\begin{bmatrix}
+    C_{11} & C_{21} & \hdots & C_{n1} \\
+    C_{12} & C_{22} & \hdots & C_{n2} \\
+    \vdots & \vdots & \vdots & \vdots \\
+    C_{1n} & C_{2n} & \hdots & C_{nn}
+\end{bmatrix}
+$$\\
+
+\paragraph{The Inverse of a Matrix Using Its Adjoint} If $A$ is an $n \times n$ invertible matrix, then 
+
+$$A^{-1} = \frac{1}{\det{A}} \operatorname{adj}{(A)}$$
+
+\paragraph{Cramer's Rule} If a system of $n$ linear equations in $n$ variables has a coefficient matrix $A$ with a nonzero determinant $|A|$, the the solution of the system is
+
+$$
+x_1 = \frac{\det{A_1}}{\det{A}} \hdots x_2 = \frac{\det{A_2}}{\det{A}} \hdots x_n = \frac{\det{A_n}}{\det{A}}
+$$\\
+
+\noindent where the $i$th column of $A_i$ is the column of constants in the system of equations
+
+\paragraph{Area of a Triangle in the $xy$-Plane} The area of a triangle with vertices
+
+$$
+(x_1,y_1), (x_2,y_2), (x_3,y_3)
+$$
+
+\noindent is
+
+\[
+Area
+=
+\pm
+\frac{1}{2}
+\det{
+\begin{bmatrix}
+    x_1 & y_1 & 1 \\
+    x_y & y_2 & 1 \\
+    x_3 & y_3 & 1
+\end{bmatrix}
+}
+\]
+
+where the $\pm$ sign is given to get a positive area
+
+\paragraph{Test for Collinear Points in the $xy$-Plane} Three points $(x_1,y_1)$, $(x_2,y_2)$, and $(x_3,y_3)$ are collinear if and only if
+
+\[
+\det{
+\begin{bmatrix}
+    x_1 & y_1 & 1 \\
+    x_2 & y_2 & 1 \\
+    x_3 & y_3 & 1 
+\end{bmatrix}
+}
+=
+0
+\]\\
+
+\paragraph{Two-Point Form of an Equation of a Line} An equation of the line passing through the distinct points $(x_1,y_1)$ and $(x_2,y_2)$ is
+
+$$
+\det{
+\begin{bmatrix}
+    x & y & 1 \\
+    x_1 & y_1 & 1 \\
+    x_2 & y_2 & 1
+\end{bmatrix}
+}
+$$
+
+\paragraph{Volume of a Tetrahedron} The volume of a tetrahedron with vertices $(x_1,y_1,z_1)$, $(x_2,y_2,z_2)$, $(x_3,y_3,z_3)$, and $(x_4,y_4,z_4)$ is 
+
+\[
+Volume
+=
+\pm
+\frac{1}{6}
+\det{
+\begin{bmatrix}
+    x_1 & y_1 & z_1 & 1 \\
+    x_2 & y_2 & z_2 & 1 \\
+    x_3 & y_3 & z_3 & 1 \\
+    x_4 & y_4 & z_4 & 1 
+\end{bmatrix}
+}
+\]
+
+\noindent where the sign $\pm$ is chosen to give a positive volume\\
+
+\paragraph{Test for Coplanar Points in Space} Four points $(x_1,y_1,z_1)$, $(x_2,y_2,z_2)$, $(x_3,y_3,z_3)$, and $(x_4,y_4,z_4)$ are coplanar if and only if
+
+\[
+\det
+{
+\begin{bmatrix}
+    x_1 & y_1 & z_1 & 1 \\
+    x_2 & y_2 & z_2 & 1 \\
+    x_3 & y_3 & z_3 & 1 \\
+    x_4 & y_4 & z_4 & 1 
+\end{bmatrix}
+}
+=
+0
+\]
+
+\paragraph{Three-Point Form of an Equation of a Plane} An equation of a plane passing through the distinct point $(x_1,y_1,z_1)$, $(x_2,y_2,z_2)$, and $(x_3,y_3,z_3)$ is
+
+\[
+\det{
+\begin{bmatrix}
+x & y & z & 1 \\
+x_1 & y_1 & z_1 & 1 \\
+x_2 & y_2 & z_2 & 1 \\
+x_3 & y_3 & z_3 & 1 
+\end{bmatrix}
+=
+0
+}
+\]
+
+\chapter{Unit 4}
+
+\section{Vectors in $\mathbb{R}^n$}
+
+\subsection{Theory}
+
+Geometrically, a \textbf{vector plane} is represented by a \textbf{directed line segment} with its \textbf{initial point} at the origin and its \textbf{terminal point} at $(x_1,x_2)$.
+
+\paragraph{Definition of Vector Addition and Scalar Multiplication in $R^n$}
+
+Let $u= (u_1,u_2,u_3, \hdots, u_n)$ and $v=(v_1,v_2,v_3,\hdots,v_n)$ be vectors in $R^n$ and let $c$ be a real number. The sum of $u$ and $v$ is the vector
+
+$$
+u+v = (u_1 + v_1, u_2 + v_2, u_3 + v_3, \hdots, u_n + v_n)
+$$
+
+\noindent and the \textbf{scalar multiple} of $u$ by $c$ is the vector 
+
+$$
+cu = (cu_1, cu_2, cu_3, \hdots, cu_n)
+$$
+
+\paragraph{Properties of Vector Addition and Scalar Multiplication in $R^n$} 
+
+Let $u$, $v$, and $w$ be vectors in $R^n$, and let $c$ and $d$ be scalars
+
+\begin{enumerate}
+    \item $u+v$ is a vector in $R^n$ - Closure under addition
+    \item $u+v=v+u$ - Commutative Property of Addition
+    \item $(u+v) + w = u + (v+w)$ - Associative Property of Addition
+    \item $u+0 = u$ - Additive Identity Property 
+    \item $u+(-u)=0$ - Additive Inverse Property
+    \item $cu$ is a vector in $R^n$ - Closure under scalar multiplication
+    \item $c(u+v) = cu + cv$ - Distributive Property
+    \item $(c+d)u = cu + du$ - Distributive Property
+    \item $c(du) = (cd)u$ - Associative Property of Multiplication
+    \item $1(u) = u$ - Multiplicative Identity Property
+\end{enumerate}
+
+
+
+An important type of problem in linear algebra involves writing one vector $x$ as the sum of scalar multiples of other vectors $v_1, v_2, \hdots, v_n$. That is, for scalars $c_1,c_2,\hdots,c_n$,
+
+$$
+x = c_1v_1 + c_2v_2 + \hdots + c_nv_n
+$$
+
+\noindent The vector $\bm{x}$ is called a \textbf{linear combination} of the vectors $\bm{v_1},\bm{v_2},\hdots,\bm{v_n}$
+
+\section{Vector Spaces} 
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definition of a Vector Space]
+	
+Let $V$ be a set on which two operations (\textbf{vector addition} and \textbf{vector multiplication}) are defined. If the listed axioms are satisfied for every $\bm{u}$ $\bm{v}$, and $\bm{w}$ in $V$ and every scalar (real number) $c$ and $d$, then $V$ is a \textbf{vector space}.\\
+
+\end{tcolorbox}
+
+\noindent \textbf{Addition}
+\begin{enumerate} 
+    \item $\bm{u} + \bm{v}$ is in $V$ - Closure
+    \item $u+v=v+u$ - Commutative Property
+    \item $(u+v) + w = u + (v+w)$ - Associative Property
+    \item $V$ has a \textbf{zero vector 0} such that for every $\bm{u}$ in $V$, $\bm{u}+0=\bm{u}$ - Additive Identity
+    \item For every $\bm{u}$ in $V$, there is a vector in $V$ denoted by $-\bm{u}$ such that $\bm{u} + (-\bm{u}) = 0$ - Additive Inverse
+\end{enumerate}
+
+\noindent \textbf{Scalar Multiplication}
+\begin{enumerate}
+    \item $cu$ is a vector in $R^n$ - Closure under scalar multiplication
+    \item $c(u+v) = cu + cv$ - Distributive Property
+    \item $(c+d)u = cu + du$ - Distributive Property
+    \item $c(du) = (cd)u$ - Associative Property
+    \item $1(u) = u$ - Scalar Identity Property
+\end{enumerate}
+
+\paragraph{Summary of Important Vector Spaces} 
+\begin{enumerate}
+    \item $\mathbb{R}$ - set of all real numbers
+    \item $\mathbb{R}^2$ - set of all ordered pairs
+    \item $\mathbb{R}^3$ - set of all ordered triplets
+    \item $\mathbb{R}^n$ - set of all ordered $n$-tuples
+    \item $C(-\infty, \infty)$ - set of all continuous functions defined on the real number line
+    \item $C[a,b]$ - set of all continuous functions defined on a closed interval $[a,b]$ where $a \ne b$
+    \item $\mathbb{P}$ - set of all polynomials
+    \item $\mathbb{P}_n$ - set of all polynomials degree $\le n$ (together with zero polynomials)
+    \item $M_{m,n}$ - set of all $m \times n$ matrices
+    \item $M_{n,n}$ - set of all $n \times n$ square matrices
+\end{enumerate}
+
+
+\begin{tcolorbox}[colframe = lightred, title = Example Proof 1]
+
+ Use the axioms to prove $M_{22}$ is a vector space
+ 
+ \end{tcolorbox}
+
+Let $\bm{u} =
+\begin{bmatrix}
+    a & b \\
+    c & d
+\end{bmatrix} 
+\in M_{22}$, $\bm{v} = 
+\begin{bmatrix}
+    e & f \\
+    g & h
+\end{bmatrix}
+\in M_{22}, \bm{w} \in M_{22},$ and $\alpha$ and $\beta$ be scalars
+
+\begin{enumerate}
+    \item $\bm{u} + \bm{v} = 
+    \begin{bmatrix}
+    a & b \\
+    c & d
+    \end{bmatrix} 
+    +
+    \begin{bmatrix}
+    e & f \\
+    g & h
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        a + e & b + f \\
+        c + g & d + h
+    \end{bmatrix} \in M_{22}$
+    \item $\bm{u} + \bm{v} =
+    \begin{bmatrix}
+        a + e & b + f \\
+        c + g & d + h
+    \end{bmatrix} 
+    =
+    \begin{bmatrix}
+        e + a & f + b \\
+        g + c & h + d
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    e & f \\
+    g & h
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+    a & b \\
+    c & d
+    \end{bmatrix} 
+    = 
+    \bm{v} + \bm{u}$
+
+    \item $\bm{u} + (\bm{v} + \bm{w}) = 
+    \begin{bmatrix}
+    a & b \\
+    c & d
+    \end{bmatrix} 
+    +
+    \left(
+    \begin{bmatrix}
+    e & f \\
+    g & h
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        i & j \\
+        k & l
+    \end{bmatrix}
+    \right)
+    =
+    \begin{bmatrix}
+        a + e + i & b + f + j \\
+        c + g + k & d + h + l
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        a + e & b + f \\
+        c + g & d + h
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        i & j \\
+        k & l
+    \end{bmatrix}
+    =
+    \left(\bm{u} + \bm{v}\right) + \bm{w}
+    $
+
+    \item $\bm{0} =
+    \begin{bmatrix}
+        0 & 0 \\
+        0 & 0 
+    \end{bmatrix} \implies \bm{u} + 0 =
+    \begin{bmatrix}
+        a & b \\
+        c & d 
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        0 & 0 \\
+        0 & 0 
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        a & b \\
+        c & d
+    \end{bmatrix}
+    =
+    \bm{u}
+    $
+
+    \item $-\bm{u} =
+    \begin{bmatrix}
+        -a & -b \\
+        -c & -d
+    \end{bmatrix}
+    \implies \bm{u} + (-\bm{u}) = 
+    \begin{bmatrix}
+        a & b \\
+        c & d
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        -a & -b \\
+        -c & -d
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        0 & 0 \\
+        0 & 0 
+    \end{bmatrix}
+    = \bm{0}
+    $
+
+    \item $\alpha \bm{u}  = \alpha 
+    \begin{bmatrix}
+        a & b \\
+        c & d
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \alpha a & \alpha b \\
+        \alpha c & \alpha d
+    \end{bmatrix}
+    \in M_{22}$
+
+    \item $\alpha (\bm{u} + \bm{v}) = \alpha
+    \begin{bmatrix}
+        a + e & b + f \\
+        c + g & d + h
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \alpha (a+e) & \alpha (b+f) \\
+        \alpha (c+g) & \alpha (d+h)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \alpha a + \alpha e & \alpha b + \alpha f \\
+        \alpha c + \alpha g & \alpha d + \alpha h
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \alpha a & \alpha b\\
+        \alpha c & \alpha d
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \alpha e & \alpha f \\
+        \alpha g & \alpha h
+    \end{bmatrix}
+    =
+    \alpha
+    \begin{bmatrix}
+        a & b \\
+        c & d
+    \end{bmatrix}
+    +
+    \alpha
+    \begin{bmatrix}
+        e & f \\
+        g & h
+    \end{bmatrix}
+    =
+    \alpha \bm{u} + \alpha \bm{v}
+    $
+
+    \item 
+    $
+    (\alpha + \beta) 
+    \begin{bmatrix}
+        a & b \\
+        c & d 
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        (\alpha + \beta)a & (\alpha + \beta)b \\
+        (\alpha + \beta)c & (\alpha + \beta)d
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \alpha a + \beta a & \alpha b + \beta b \\
+        \alpha c + \beta c & \alpha d + \beta d
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \alpha a & \alpha b \\
+        \alpha c & \alpha d
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \beta a & \beta b \\
+        \beta c & \beta d
+    \end{bmatrix}
+    =
+    \alpha
+    \begin{bmatrix}
+        a & b \\
+        c & d
+    \end{bmatrix}
+    +
+    \beta
+    \begin{bmatrix}
+        a & b \\
+        c & d
+    \end{bmatrix}
+    =
+    \alpha \bm{u} + \beta \bm{u}
+    $
+
+    \item $\alpha(\beta \bm{u}) = \alpha
+    \begin{bmatrix}
+        \beta a & \beta b \\
+        \beta c & \beta d
+    \end{bmatrix}
+    =
+    \alpha \beta
+    \begin{bmatrix}
+        a & b \\
+        c & d
+    \end{bmatrix}
+    =
+    (\alpha \beta) \bm{u}
+    $
+
+    \item $1 \bm{u} = 1
+    \begin{bmatrix}
+        a & b \\
+        c & d
+    \end{bmatrix}
+    =
+    \bm{u}$\\
+
+    \noindent Therefore, $M_{22}$ is a vector space.
+\end{enumerate}
+
+\section{Subspaces of Vector Spaces}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definition of a Subspace of a Vector Space]
+	
+ A nonempty subset $W$ of a vector space $V$ is a \textbf{subspace} of $V$ when $W$ is a vector space under the operations of addition and scalar multiplication defined in $V$. If $W$ is a subspace of $V$, then it must be closed under the operations inherited from $V$.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Test for a Subspace]
+
+If $W$ is a nonempty subset of a vector space $V$, then $W$ is a subspace of $V$ if and only if the two closure conditions listed below hold.
+\begin{enumerate}
+    \item If $\bm{u}$ and $\bm{v}$ are in $W$, then $\bm{u} + \bm{v}$ is in $W$
+    \item If $\bm{u}$ is in $W$ and $c$ is any scalar, then $c\bm{u}$ is in $W$
+\end{enumerate}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = The Intersection of Two Subspaces Is A Subspace]
+	If $V$ and $W$ are both subspaces of a vector space $U$, then the intersection of $V$ and $W$ (denoted by $V \cap W$) is also a subspace of $U$.
+
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+
+ 
+ Determine whether the subset $W$ of $\mathbb{R}^3$ consisting of vectors of the form $(a,a,b)$ is a subspace.
+
+\end{tcolorbox}
+
+\textbf{Proof:}
+\begin{enumerate}
+    \item $W$ is nonempty, as $(1,1,2) \in W$.
+    \item Let $\bm{u}=(a_1,a_1,b_1) \in W$ and $\bm{v} = (a_2,a_2,b_2) \in W$ and let $k$ be a scalar
+    \item Then $\bm{u} + \bm{v}=(a_1 + a_2, a_1 + a_2, b_1 + b_2)$
+    \item Because the first two components are equal $(\bm{u} + \bm{v}) \in W$
+    \item Now, $k\bm{u}=(ka_1, ka_1, kb_1) \in W$ because the first two components are equal
+    \item Therefore, $W$ is a subspace of $\mathbb{R}^3$
+\end{enumerate}
+
+\begin{tcolorbox}[colframe = lightred]
+
+ Determine whether the subset $S$ of $\mathbb{R}^3$ consisting of vectors of the form $(a,a^2,b)$ form a subspace.\\
+
+\end{tcolorbox}
+
+\textbf{Proof:} We will show that $S$ is not closed under vector addition and, therefore, is not a subspace of $\mathbb{R}^3$. Let $\bm{u}=\left( a_1, a_1^2, b_1 \right)$ and $\bm{v}=\left( a_2, a_2^2, b_2 \right)$. Then $\bm{u} + \bm{v} = \left( a_1 + a_2, a_1^2 + a_2^2 , b_1 + b_2\right)$, which is not in $S$ because $(a_1 + a_2)^2 \ne a_1^2 + a_2^2$. \\
+
+
+
+\begin{tcolorbox}[colframe = lightred]
+
+ Determine whether the set $U$ of $2 \times 2$ diagonal matrices is a subspace of the vector space $M_{22}$.\\
+
+\end{tcolorbox}
+
+\textbf{Proof:} Let $\bm{u} = \begin{bmatrix} u_{11} & 0 \\ 0 & u_{22} \end{bmatrix} \in U$, $\bm{v}=\begin{bmatrix} v_{11} & 0 \\ 0 & v_{22} \end{bmatrix} \in U$, and $k$ be a scalar. Then $\bm{u}+\bm{v} = \begin{bmatrix} u_{11} + v_{11} & 0 \\ 0 & u_{22} + v_{22} \end{bmatrix} \in U$ because it is diagonal. Now $k\bm{u} = k \begin{bmatrix} u_{11} & 0 \\ 0 & u_{22} \end{bmatrix} = \begin{bmatrix} ku_{11} & 0 \\ 0 & ku_{22} \end{bmatrix} \in U$ because it is a diagonal matrix. Note that $U$ is nonempty. Therefore, $U$ is a subspace of $M_{22}$.
+
+\section{Spanning Sets and Linear Independence}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definition of a Linear Combination of Vectors]
+		As previously defined, a vector $\bm{v}$ in a vector space $V$ is a \textbf{linear combination} of the vectors $\bm{u_1}, \bm{u_2}, \hdots, \bm{u_k}$ in $V$ when $\bm{v}$ can be written in the form 
+		
+		$$
+		\bm{v} = c_1 \bm{u_1} + c_2 \bm{u_2} + \hdots + c_k \bm{u_k}
+		$$
+		
+		where $c_1, c_2, \hdots, c_k$ are scalars
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of a Spanning Set of a Vector Space]
+		Let $S = \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_k}\}$ be a subset of a vector space $V$. The set $S$ is a \textbf{spanning set} of $V$ when every vector in $V$ can be written as a linear combination of vectors in $S$. In such cases, it is said that $S$ \textbf{spans} $V$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of the Span of a Set]
+		If  $S = \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_} \}$ is a set of vectors in a vector space $V$, then the \textbf{span of } $S$ is the set of all linear combinations of the vectors in $S$,
+		
+		$$
+		span(S) = \{ c_1  \bm{v_1} + c_2 \bm{v_2} + \hdots + c_k \bm{v_k}: c_1, c_2, \hdots, c_k \in R \}
+		$$
+		
+		The span of $S$ is denoted by 
+		
+		$$
+		span(S)
+		$$
+		
+		or
+		
+		$$
+		span \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_k} \}
+		$$
+		
+		When $span(S) = V$, it is said that $V$ is \textbf{spanned} by $\{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_k} \}$, or that $S$ \textbf{spans} $V$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = $Span(S)$ is a Subspace of $V$]
+		If $S = \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_k} \}$ is a set of vectors in a vector space $V$, then $span(S)$ is a subspace of $V$. Moreover, $span(S)$ is the smallest possible subspace of $V$ that contains $S$, in the sense that every other subspace of $V$ that contains $S$ must contain $span(S)$. 
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Linear Dependence and Linear Independence]
+		A set of vectors $S = \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_k} \} $ in a vector space $V$ is \textbf{linearly independent} when the vector equation
+		
+		$$
+		c_1 \bm{v_1} + c_2 \bm{v_2} + \hdots + c_k \bm{v_k} = 0 
+		$$
+		
+		has only the trivial solution 
+		
+		$$
+		c_1 = 0, c_2 = 0, \hdots, c_k = 0
+		$$
+		
+		If there are also nontrivial solutions, then $S$ is linearly dependent
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Testing for Linear Independence and Linear Dependence]
+		Let $S = \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_k} \} $ be a set of vectors in a vector space $V$. To determine whether $S$ is linearly independent or linearly dependent, use the steps below.
+		
+		\begin{enumerate}
+				\item From the vector equation $c_1 \bm{v_1}  + c_2 \bm{v_2} + \hdots + c_k \bm{v_k} = 0$, write a system of linear equations in the variables $c_1, c_2, \hdots,$ and $c_k$
+				\item Determine whether the system has a unique solution
+				\item If the system only has the trivial solution, $c_1 = 0, c_2 = 0, \hdots, c_k = 0$, then the set $S$ is linearly independent. If the system also has nontrivial solutions, then $S$ is linearly dependent.
+		\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = A Property of Linearly Dependent Sets]
+		A set $S = \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_k} \}, k \ge 2$, is linearly dependent if an only if at least one of the sectors $v_i$ can be written as a linear combination of the other vectors in $S$. 
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+		Let $A = \begin{bmatrix} 2 & -3 \\ 4 & 1 \end{bmatrix}$ and $B = \begin{bmatrix} 0 & 5 \\ 1 & -2 \end{bmatrix}$ be in $M_{22}$. Determine whether the given matrix is a linear combination of $A$ and $B$. 
+		
+		$$
+		D = \begin{bmatrix} 6 & -19 \\ 10 & 7 \end{bmatrix}
+		$$
+\end{tcolorbox}
+
+\newpage
+
+$$
+c_1 \begin{bmatrix} 2 & -3 \\ 4 & 1 \end{bmatrix} + c_2 \begin{bmatrix} 0 & 5 \\ 1 & -2 \end{bmatrix} = \begin{bmatrix} 6 & -19 \\ 10 & 7 \end{bmatrix}
+$$
+
+$$2 c_1 + 0 = 6$$ $$ -3c_1 + 5c_2 = -19 $$ $$ 4c_1 + c_2 = 10 $$ $$c_1 -2c_2 = 7$$
+
+$$
+\begin{bmatrix} 2 & 0 & 6 \\ -3 & 5 & -19 \\ 4 & 1 & 10 \\ 1 & -2 & 7 \end{bmatrix} \implies \begin{bmatrix} 1 & 0 & 3 \\ 0 & 1 & -2 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix} \implies D = 3A - 2B
+$$
+
+Therefore, $D$ is a linear combination of $A$ and $B$
+
+\begin{tcolorbox}[colframe = lightred]
+	Determine whether the set $S$ spans $\mathbb{R}^3$.
+	
+	$$
+	S = \{(1,-2,0),(0,0,1),(-1,2,0)\}
+	$$
+	
+\end{tcolorbox}
+
+Let $\bm{v} = (v_1,v_2,v_3)$ be an arbitrary vector in $\mathbb{R}^3$. Then,
+
+$$	
+c_1 \begin{bmatrix} 1 \\ -2 \\ 0 \end{bmatrix} + c_2 \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} + c_3 \begin{bmatrix} -1 \\ 2 \\ 0 \end{bmatrix} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix}
+$$
+
+$$c_1 - c_3 = v_1 $$
+$$ -2c_1 + 2c_3 = v_2$$
+$$c_2 = v_3$$
+
+Looking here, we can see that the system doesn't have a unique solution and therefore, doesn't span $\mathbb{R}^3$.
+
+\begin{tcolorbox}[colframe = lightred]
+	Determine whether the set $S$ is linearly independent or linearly dependent
+	
+	$$
+	S= \{7-3x+4x^2, 6+2x-x^2, 1-8x+5x^2\}
+	$$
+\end{tcolorbox}
+
+
+$$
+c_1 v_1 + c_2v_2 + c_3v_3 = 0
+$$
+
+$$
+c_1 (7-3x+4x^2) + c_2 (6+2x-x^2) + c_3 (1-8x+5x^2) = 0
+$$
+
+$$
+7c_1 + 6c_2 + c_3 + 2c_2 x - 3c_1 x - 8 c_3 x + 4c_1 x^2  - c_2 x^2 + 5c_3 x^2 = 0 + 0x + 0x^2
+$$
+
+$$
+7c_1 + 6 c_2 + c_3 = 0
+$$
+
+$$
+-3c_1 + 2c_2 - 8 c_3 = 0 
+$$
+
+$$
+4c_1 - c_2 + 5c_3 = 0
+$$
+
+$$
+\implies \begin{bmatrix} 7 & 6 & 1 & 0 \\ -3 & 2 & -8 & 0 \\ 4 & -1 & 5 & 0 \end{bmatrix}  \implies \begin{bmatrix} 	1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \implies c_1 = c_2 = c_3 = 0
+$$
+
+Therefore, $S$ is linearly indepdent
+
+\section{Basis and Dimension}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title  = Definition of a Basis]
+	A set of vectors $S = \{\bm{v_1}, \bm{v_2}, \hdots, \bm{v_n}\}$ in a vector space $V$ is a \textbf{basis} for $V$ when the conditions below are true.
+	
+	\begin{enumerate}
+		\item $S$ spans $V$
+		\item $S$ is lineraly independent 
+	\end{enumerate}
+	
+\end{tcolorbox}
+
+\paragraph{Standard Bases for Common Vector Spaces}
+\begin{enumerate}
+	\item $\mathbb{R}^3: \{(1,0,0),(0,1,0),(0,0,1)\}$
+	\item $M_{22}: \left\{ \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix} \right\}$
+	\item $ P_5: \left\{ 1, x, x^2, x^3, x^4, x^5\right\}$
+\end{enumerate}
+
+\begin{tcolorbox}[title = Bases and Linear Dependence]
+	If $S=\{v_1,v_2,\hdots,v_n\}$ is a basis for a vector space $V$, then every set containing more than $n$ vectors is linearly dependent.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Number of Vectors in a Basis]
+		If a vector space $V$ has one basis with $n$ vectors, then every basis for $V$ has $n$ vectors
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of the Dimension of a Vector Space]
+		If a vector space $V$ has a basis consisting of $n$ vectors, then the number $n$ is the \textbf{dimension} of $V$, denoted by $\dim{V}=n$. When $V$ consists of the zero vector alone, the dimension of $V$ is defined as zero.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Basis Test in an $n$-dimensional Space]
+		Let $V$ be a vector space of dimension $n$. 
+		\begin{itemize}
+				\item If $S = \{v_1, v_2, \hdots, v_n\}$ is a linearly independent set of vectors in $V$, then $S$ is a basis for $V$.
+				\item If $S = \{v_1, v_2, \hdots, v_n\}$ spans $V$, then $S$ is a basis for $V$.
+		\end{itemize}
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+		Explain why $S$ is not a basis for the given vector space $\mathbb{R}^3$:
+		
+		$$
+		S = \{ (0,0,0),(1,0,0),(0,1,0)\}
+		$$
+\end{tcolorbox}
+
+Representing $S$:
+
+$$
+c_1 \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} + c_2 \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}  + c_3 \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+$$
+
+Therefore, $c_2 = c_3 = 0$, but $c_1$ can be non-zero. Since this isn't the trivial solution, $S$ is not a linearly independent set. Therefore, $S$ is not a basis.
+
+\begin{tcolorbox}[colframe = lightred]
+		Explain why $S$ is not basis for the given vector space $\mathbb{R}^3$:
+		
+		$$
+		S = \{ (1,1,1),(0,1,1),(1,0,1),(0,0,0) \}
+		$$
+\end{tcolorbox}
+
+$S$ cannot be a basis for $\mathbb{R}^3$, because it contains the zero vector and too many vectors. Therefore, $S$ is linearly dependent.
+
+\section{Rank of a Matrix}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definitions of Row Space and Column Space of a Matrix]
+	Let $A$ be an $m \times n$ matrix
+	\begin{itemize}
+			\item The \textbf{row space} of $A$ is the subspace of $R^n$ spanned by the row vectors of $A$
+			\item The \textbf{column space} of $A$ is the subspace of $R^m$ spanned by the column vectors of $A$
+	\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Row-Equivalent Matrices Have the Same Row Space]
+		If an $m \times n$ matrix $A$ is row-equivalent to an $m \times n$ matrix $B$, then the row space of $A$ is equal to the row space of $B$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Basis for the Row Space of a Matrix]
+		If a matrix $A$ is row-equivalent to a matrix $B$ in row-echelon form, then the nonzero row vectors of $B$ form a basis for the row-space of $A$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Row and Column Spaces Have Equal Dimensions]
+	The row space and column space of an $m \times n$ matrix $A$ have the same dimension
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of the Rank of a Matrix]
+	The dimension of the row (or column) space of a matrix $A$ is the \textbf{rank}	 of  $A$ and is denoted by $rank (A)$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Solutions of a Homogenous System]
+		If $A$ is an $m \times n$ matrix, then the set of all solutions of the homogeneous system of linear equations $Ax=0$ is a subspace of $\mathbb{R}^n$ called the \textbf{nullspace} of $A$ and is denoted $N(A)$. So,
+		
+		$$
+		N(A) = \{ x \in \mathbb{R}^n: Ax=0\}
+		$$
+		
+		The dimensions of the nullspace of $A$ is the \textbf{nullity} of $A$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Dimension of the Solution Space]
+		If $A$ is a $m \times n$ matrix of rank $r$, then the dimension of the solution space of $Ax=0$ is $n-r$. That is $n = rank(A) + N(A)$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Solutions of a System of Linear Equations]
+	The system $Ax=b$ is consistent if and only if $b$ is in the column space of $A$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Summary of Equivalent Conditions for Square Matrices]
+		If $A$ is an $n \times n$ matrix, then the conditions below are equivalent
+		
+		\begin{itemize}
+			\item $A$ is invertible
+			\item $Ax=b$ has a unique solution for any $n \times 1$ matrix $b$
+			\item $Ax=0$ has only the trivial solution
+			\item $A$ is row-equivalent to $I_n$
+			\item $|A| \ne 0$
+			\item $Rank(A) =n$
+			\item The $n$ row vectors of $A$ are linearly indepdent
+			\item The $n$ column vectors of $A$ are linearly independent
+		\end{itemize}
+\end{tcolorbox}
+
+\section{Coordinates and Change of Basis}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Coordinate Representation Relative to a Basis]
+		Let $B = \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_n} \}$ be an ordered basis for a vector space $V$ and let $x$ be a vector in $V$ such that 
+		
+		$$
+		\bm{x} = c_1 \bm{v_1} + c_2 \bm{v_2} + \hdots + c_n \bm{v_n}
+		$$
+		
+		The scalars $c_1, c_2, \hdots, c_n$ are the \textbf{coordinates of $x$ relative to the basis $B$}. The \textbf{coordinate matrix} (or \textbf{coordinate vector}) \textbf{ of $x$ relative to $B$} is the column matrix in $\mathbb{R}^n$ whose components are the coordinates of $x$.
+		
+		$$
+		[x]_B = \begin{bmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \end{bmatrix}
+		$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Transition Matrix $B$ to $B'$]
+	Let $B = \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_n} \}$ and $B' = \{ \bm{u_1}, \bm{u_2}, \hdots, \bm{u_n} \}$ be two bases for $\mathbb{R}^n$. Then the transition matrix $P^{-1}$ from $B$ to $B'$ can be found by using Gauss-Jordan elimination on the $n \times 2n$ matrix $\begin{bmatrix} B' 	& B \end{bmatrix}$, as shown below.
+	
+	$$
+	\begin{bmatrix} B' & B \end{bmatrix} = \begin{bmatrix} I_n & P^{-1} \end{bmatrix}
+	$$
+\end{tcolorbox} 
+
+\begin{tcolorbox}[title = The Inverse of a Transition Matrix]
+		If $P$ is a transition matrix from a basis $B'$ to a basis $B$ in $\mathbb{R}^n$, then $P$ in invertible and the transition matrix from $B$ to $B'$ is $P^{-1}$.
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	Given the coordinate matrix of $x$ relative to a constandard basis $B$ for $\mathbb{R}^n$, find the coordinate matrix of $x$ relative to the standard basis.
+	
+	$$
+	B = \{ (2,-1), (0,1) \}, [x]_B = \begin{bmatrix} 4 \\ 1 \end{bmatrix}; B' = \{ (1,0), (0,1)\}
+	$$
+\end{tcolorbox}
+
+\paragraph{Method 1}
+
+$$
+4 \begin{bmatrix} 2 \\ - 1 \end{bmatrix} + 1 \begin{bmatrix} 0 \\ 1 \end{bmatrix}  = \begin{bmatrix} 8 \\ - 3 \end{bmatrix} = 8 \begin{bmatrix} 1 \\ 0 \end{bmatrix} + (-3) \begin{bmatrix} 0 \\ 1 \end{bmatrix} \implies [x]_{B'} = \begin{bmatrix} 8 \\ -3 \end{bmatrix}
+$$
+
+\paragraph{Method 2} Transition matrix from $B$ to $B'$ (Find $P^{-1}$)
+
+$$
+\begin{bmatrix} B' & B \end{bmatrix} \implies \begin{bmatrix} I_n & P^{-1} \end{bmatrix}
+$$
+
+$$
+\begin{bmatrix} 1 & 0 & 2 & 0 \\ 0 & 1 & -1 & 1 \end{bmatrix} \implies  P^{-1} = \begin{bmatrix} 2 & 0 \\ -1 & 1 \end{bmatrix}
+$$
+
+$$
+\begin{bmatrix} 2 & 0 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} 4 \\ 1 \end{bmatrix} = \begin{bmatrix} 8 \\ -3 \end{bmatrix}
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the coordinate matrix of $x$ in $\mathbb{R}^n$ relative to the standard basis $B^{'}$
+	
+	$$
+	B' = \{ (4,3,3), (-11,0,11),(0,9,2)\}, x = (11,18,-7)
+	$$
+\end{tcolorbox}
+
+$$
+c_1 \begin{bmatrix} 4 \\ 3 \\ 3 \end{bmatrix} + c_2 \begin{bmatrix} -11 \\ 0 \\ 11 \end{bmatrix} + c_3 \begin{bmatrix} 0 \\ 9 \\ 2 \end{bmatrix} = \begin{bmatrix} 11 \\ 18 \\ -7 \end{bmatrix}
+$$
+
+$$
+	\begin{cases}
+		4c_1 - 11c_2 = 11 \\
+		3c_1 + 9c_3 = 18 \\
+		3c_1 + 11c_2 + 2c_3 = -7
+	\end{cases}
+	\implies \begin{bmatrix} 4 & -11 & 0 & 11 \\ 3 & 0 & 9 & 18 \\ 3 & 11 & 2 & - 7 \end{bmatrix}
+	\xRightarrow{\text{RREF}}
+	\begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & -1 \\ 0 & 0 & 1 & 2 \end{bmatrix}
+$$
+
+$$
+\implies
+\begin{cases}
+	c_1 = 0 \\ c_2 = -1 \\ c_3 = 2 
+\end{cases}
+\implies 
+[x]_{B'} = \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}
+$$
+
+\section{Applications of Vector Spaces}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Solutions of a Linear Homogenous Differential Equation]
+	Every $n$-th order linear homogeneous differential equation
+	
+	$$
+	y^{(n)} + g_{n-1} (x) y^{n-1} + \hdots + g_1 (x) y^{'}  + g_0 (x) y = 0
+	$$
+	
+	has $n$ linearly independent solutions. Moreover, if $\{y_1, y_2,\hdots, y_n\}$ is a set of linearly independent solutions, then every solution is of the form
+	
+	$$
+	y = C_1 y_1 + C_2 y_2 + \hdots C_n y_n
+	$$
+	
+	where $C_1, C_2, \hdots, C_n$ are real numbers
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of the Wronskian of a Set of Functions]
+	Let $\{y_1, y_2, \hdots, y_n\}$ be a set of functions, each of which has $n-1$ derivatives	on an interval $I$. The determinant
+	
+	$$
+	W(y_1,y_2,\hdots,y_n) = \begin{bmatrix} y_1 & y_2 & \hdots & y_n \\y_1' & y_2' & \hdots &  y_n' \\ \vdots & \vdots & \vdots  & \vdots \\ y_1^{n-1} & y_2^{n-1} & \hdots & y_n^{n-1} \end{bmatrix}
+	$$
+	
+	is the \textbf{Wronskian} of the set of functions
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Wronskian Test for Linear Independence]
+	Let $\{y_1, y_2, \hdots, y_n\}$ be a set of $n$ solutions of an $n$th-order linear homogeneous differential equation. This set is linearly independent if and only if the Wronskian is not identically equal to zero.
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	Determine which functions are solutions of the linear differential equation 
+	
+	$$
+	x^2y'' -2y = 0
+	$$
+	
+	\begin{enumerate}
+		\item $\frac{1}{x^2}$
+		\item $x^2$
+		\item $e^{x^2}$
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{enumerate}
+	\item
+	
+	$$
+	\frac{1}{x^2} = x^{-2} \implies (x^{-2})' = -2x^{-3} \implies (-2x^{-3})' = \frac{6}{x^4}
+	$$
+	
+	$$
+	\implies x^2 \left(\frac{6}{x^4} \right) - 2 \left( \frac{1}{x^2} \right) \implies \frac{6}{x^2} - \frac{2}{x^2} = \frac{4}{x^2} \ne 0 
+	$$
+	
+	\item 
+	
+	$$
+	x^2 \implies (x^2)' = 2x \implies (2x)' = 2
+	$$
+	
+	$$
+	\implies x^2(2) - 2(x^2) = 2x^2 - 2x^2 = 0
+	$$
+	
+	\item 
+	
+	$$
+	y = e^{x^2} \implies \left( e^{x^2} \right)' = 2xe^{x^2} \implies \left( 2xe^{x^2} \right)' = 2e^{x^2} + 4x^3 e^{x^2}
+	$$
+	
+	$$
+	\implies x^2 (2e^{x^2} + 4x^2 e^{x^2}) - 2 \left( e^{x^2} \right) = 2x^2 e^{x^2} + 4x^3e^{x^2} - 2e^{x^2} \implies 2e^{x^2} = 2x^2{e^{x^2}} + 4x^3 e^{x^2} \implies 2e^{x^2} \ne 0 
+	$$
+
+\end{enumerate}
+
+Therefore, only $2$ satisfies the differential equation
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the Wronskian of the set of functions 
+	
+	$$
+	\{ x, \sin{x}, \cos{x} \}
+	$$
+\end{tcolorbox}
+
+$$
+W = \begin{bmatrix} x & \sin{x} & \cos{x} \\ 1 & \cos{x} & -\sin{x} \\ 0 & -\sin{x} & - \cos{x} \end{bmatrix}
+$$
+
+$$
+W= x \begin{bmatrix} \cos{x} & -\sin{x} \\ -\sin{x} & -\cos{x} \end{bmatrix} - \sin{x} \begin{bmatrix} 1 & -\sin{x} \\ 0 & -\cos{x} \end{bmatrix} + \cos{x} \begin{bmatrix} 1 & \cos{x} \\ 0 & -\sin{x} \end{bmatrix}
+$$
+
+$$
+W = x \left( -\cos^2{x} - \sin^2{x} \right) - \sin{x} \left( -\cos{x} \right) + \cos{x} \left( -\sin{x} \right)
+$$
+
+$$
+W = -x \cos^2{x} - x \sin^2{x} + \sin{x} \cos{x} - \sin{x} \cos{x} \implies W = -x \cos^2{x} - x \sin^2{x} \implies \boxed{W=-x}
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+		Find the Wronskian of the set of functions
+		
+		$$
+		\{1, e^x, e^{2x} \}
+		$$
+\end{tcolorbox}
+
+$$
+W = \begin{bmatrix} 1 & e^x & e^{2x} \\ 0 & e^x & 2e^{2x} \\ 0 & e^x & 4e^{2x} \end{bmatrix}
+$$
+
+$$
+W = 1 \begin{bmatrix} e^x & 2e^{2x} \\ e^x & 4e^{2x} \end{bmatrix} - e^x \begin{bmatrix} 0 & 2e^{2x} \\ 0 & 4e^{2x} \end{bmatrix} + e^{2x} \begin{bmatrix} 0 & e^x \\ 0 & e^x \end{bmatrix} = \left( 4e^{3x} - 2e^{3x} \right)  - e^x (0) + e^{2x} (0) 
+$$
+
+$$	
+\boxed{W = 2e^{3x}}
+$$
+
+
+\chapter{Unit 5}
+
+\section{Length and Dot Product in $\mathbb{R}^n$}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definition of the Length of a Vector in $\mathbb{R}^n$]
+	The \textbf{length}, or \textbf{norm} of a vector $\bm{v} = (v_1,v_2,\hdots,v_n)$ in $\mathbb{R}^n$ is 
+	
+	$$
+	\| \bm{v} \| = \sqrt{v_1^2 + v_2^2 \hdots + v_n^2}
+	$$
+	
+	The length of a vector is also called its \textbf{magnitude}. If $\| v \|  = 1$, then the vector $\bm{v}$ is a \textbf{unit vector}.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Length of a Scalar Multiple]
+	Let $\bm{v}$ be a vector in $\mathbb{R}^n$ and let $c$ be a scalar. Then,
+	
+	$$
+	\| c\bm{v} \| = |c| \| \bm{v} \|
+	$$
+
+	where $|c|$ is the absolute value of $c$
+	
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Unit Vector in the Direction of $\bm{v}$]
+	If $\bm{v}$ is a nonzero vector in $\mathbb{R}^n$, then the vector
+	
+	$$
+	\bm{u} = \frac{\bm{v}} {\| \bm{v} \|}	
+	$$
+	
+	has length $1$ and has the same direction as $\bm{v}$. This vector $\bm{u}$ is the \textbf{unit vector in the direction of  v}.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Distance Between Two Vectors]
+	The distance between two vectors $\bm{u}$ and $\bm{v}$ in $\mathbb{R}^n$ is
+	
+	$$
+	d(\bm{u},\bm{v}) = \| \bm{u} - \bm{v} \|
+	$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Dot Product in $\mathbb{R}^n$]
+	The \textbf{dot product} of $\bm{u} = (u_1, u_2, \hdots, u_n)$ and $\bm{v} = (v_1, v_2, \hdots, v_n)$ is the scalar quantity
+	
+	$$
+	\bm{u} \cdot \bm{v} = u_1 v_1 + u_2 v_2 + \hdots + u_n v_n
+	$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Properties of the Dot Product]
+	\begin{enumerate}
+			\item $\bm{u} \cdot \bm{v} = \bm{v} \cdot \bm{u}$
+			\item $\bm{u} \cdot (\bm{v} + \bm{w}) = \bm{u} \cdot \bm{v} + \bm{u} \cdot \bm{w}$
+			\item $c(\bm{u} \cdot \bm{v}) = (c\bm{u}) \cdot \bm{v} = \bm{u} \cdot (c\bm{v})$
+			\item $\bm{v} \cdot \bm{v} = \| v \| ^2 $
+			\item $\bm{v} \cdot \bm{v} \ge 0$, and $\bm{v} \cdot \bm{v} = 0$ $\iff$ $\bm{v} = 0$
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of the Angle Between Two Vectors in $\mathbb{R}^n$]
+	The \textbf{angle} $\theta$ between two nonzero vectors in $\mathbb{R}^n$ can be found using
+	
+	$$
+	\cos{\theta} = \frac{\bm{u} \cdot \bm{v}}{\|\bm{u} \| \|\bm{v} \|}, 0 \le \theta \le \pi
+	$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Orthogonal Vectors]
+		Two vectors $\bm{u}$ and $\bm{v}$ in $\mathbb{R}^n$ are \textbf{orthogonal} when
+		$$
+		\bm{u} \cdot \bm{v} = 0
+		$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = The Triangle Inequality]
+	If $\bm{u}$ and $\bm{v}$ are vectors in $\mathbb{R}^n$, then
+	
+	$$
+	\| \bm{u} + \bm{v} \| \le \|\bm{u} \| + \| \bm{v} \|
+	$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = The Pythagorean Theorem]
+	If $\bm{u}$ and $\bm{v}$ are vectors in $\mathbb{R}^n$, then $\bm{u}$ and $\bm{v}$ are othogonal if and only if
+	$$
+	\| \bm{u} + \bm{v} \| ^2 = \| \bm{u} \| ^2 + \| \bm{v} \| ^2 
+	$$
+\end{tcolorbox}
+
+\subsection{Examples}
+
+Examples are trivial and not worth including
+
+\section{Inner Product Spaces}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definition of Inner Product]
+	Let $\bm{u}, \bm{v}$, and $\bm{w}$ be vectors in a vector space $V$, and let $c$ be any scalar. An \textbf{inner product} on $V$ is a function that associates a real number $\langle \bm{u}, \bm{v} \rangle$ with each pair of vectors $\bm{u}$ and $\bm{v}$ and satisfies the axioms listed below.
+	
+	\begin{enumerate}
+		\item	$\langle \bm{u}, \bm{v} \rangle = \langle \bm{v}, \bm{u} \rangle$
+		\item $\langle \bm{u}, \bm{v} + \bm{w}\rangle = \langle \bm{u}, \bm{w} \rangle + \langle \bm{u}, \bm{w} \rangle$
+		\item $c \langle \bm{u}, \bm{v} \rangle = \langle c \bm{u}, \bm{v} \rangle $
+		\item $\langle \bm{v}, \bm{v} \rangle \ge 0$ and $\langle \bm{v}, \bm{v} \rangle = 0$ if and only if $\bm{v} = 0$
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Properties of Inner Products]
+		 Let $\bm{u}, \bm{v}$, and $\bm{w}$ be vectors in an inner product space $V$, and let $c$ be any real number.
+	\begin{enumerate}
+		\item $\langle 0, \bm{v} \rangle = \langle \bm{v}, 0 \rangle = 0$
+		\item $\langle \bm{u} + \bm{v},  \bm{w} \rangle  = \langle \bm{u}, \bm{w} \rangle + \langle \bm{v}, \bm{w} \rangle $
+		\item $\langle \bm{u}, c\bm{v} \rangle = c \langle \bm{u}, \bm{v} \rangle$
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definitions of Length Distance and Angle]
+	Let $\bm{u}$ and $\bm{v}$ be vectors in an inner product space $V$
+	\begin{enumerate}
+		\item The \textbf{length} (or \textbf{norm}) of $\bm{u}$ is $\| \bm{u} \| = \sqrt{(\bm{u}, \bm{u})}$
+		\item The \textbf{distance} between $\bm{u}$ and $\bm{v}$ is $(\bm{u}, \bm{v}) = \| \bm{u} - \bm{v} \|$
+		\item The \textbf{angle} between two nonzero vectors $\bm{u}$ and $\bm{v}$ can be found using
+		$$
+		\cos \theta = \frac{(\bm{u},\bm{v})}{\|\bm{u}\| \|\bm{v} \| }, 0 \le \theta \le \pi
+		$$
+		
+		\item $\bm{u}$ and $\bm{v}$ are \textbf{orthogonal} when $\langle \bm{u}, \bm{v} \rangle = 0$
+	\end{enumerate}	
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Generalized Theorems from the Dot Product]
+	\begin{enumerate}
+		\item Cauchy-Schwarz Inequality: $\| (\bm{u}, \bm{v}) \| \le \| \bm{u} \| \| \bm{v} \|$
+		\item Triangle Inequality: $\| \bm{u} + \bm{v} \| \le \| \bm{u} \| + \| \bm{v} \|$
+		\item Pythagorean Theorem: $\bm{u}$ and $\bm{v}$ are orthogonal iff
+		$$
+		\| \bm{u} + \bm{v} \| ^2 = \| \bm{u} \| ^2 + \| \bm{v} \| ^2 
+		$$
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Orthogonal Projection]
+	Let $\bm{u}$ and $\bm{v}$ be vectors in an inner product space $V$, such that $\bm{v} \ne 0$. Then the \textbf{orthogonal projection} of $\bm{u}$ onto $\bm{v}$ is 
+	
+	$$
+	proj_{\bm{v}} \bm{u} = \frac{\langle \bm{u}, \bm{v} \rangle}{\langle \bm{v}, \bm{v} \rangle} \bm{v}
+	$$
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	Show that the function defines an inner product on $\mathbb{R}^3$, where $\bm{u} = (u_1, u_2, u_3)$ and $\bm{v} = (v_1,v_2,v_3)$.
+	
+	$$
+	\langle \bm{u}, \bm{v} \rangle = 2u_1 v_1 + 3u_2 v_2 + u_3 v_3
+	$$
+\end{tcolorbox}
+
+Let $\bm{v} + \bm{w} = (v_1 + w_1, v_2 + w_2, v_3 + w_3)$
+
+\begin{enumerate}
+	\item $\langle \bm{u}, \bm{v} \rangle = 2u_1 v_1 + 3u_2 v_2 + u_3 v_3 = 2v_1 u_1 + 3v_2 u_2 + v_3 u_3 = \langle \bm{v}, \bm{u} \rangle$
+	\item $\langle \bm{u}, \bm{v} + \bm{w} \rangle = 2 u_1 (v_1 + w_1) + 3u_2 (v_2 + w_2 ) + u_3 (v_3 + w_3) = 2u_1 v_1 + 2u_1 w_1 + 3u_2 v_2 + 3u_2 w_2 + u_3 v_3 + u_3 w_3  = 2u_1 v_1 + 3u_2 v_2 + u_3 v_3 + 2u_1 w_1 + 3u_2 w_2 + u_3 w_3 = \langle \bm{u} + \bm{v} \rangle + \langle \bm{u}, \bm{w} \rangle$
+	\item $c \langle \bm{u}, \bm{v} \rangle = c (2u_1v_1 + 3u_2 v_2 + u_3 v_3) = 2cu_1 v_1 + 3cu_2 v_2 + cu_3 v_3 = 2(cu_1) v_1 + 3 (cu_2) v_2 + (cu_3) v_3 = \langle c\bm{u}, \bm{v} \rangle$
+	\item $\langle \bm{u}, \bm{u} \rangle = 2u_1 u_1 + 3u_2 u_2 + u_3 u_3 \ge 0 $ with equality $\iff \bm{u} = 0$
+\end{enumerate}
+
+\begin{tcolorbox}[colframe = lightred]
+	Show that the function does not define an inner product on $\mathbb{R}^3$, where $\bm{u} = (u_1, u_2, u_3)$ and $v=(v_1,v_2,v_3)$
+	
+	$$
+	\langle \bm{u}, \bm{v} \rangle = u_1 ^2 v_1 ^2 + u_2 ^2 v_2 ^2 + u_3 ^2 v_2 ^2
+	$$
+\end{tcolorbox}
+
+Let's just show that axiom 3 fails. Let $\bm{u} = (1,2,3)$, $\bm{v} = (1,0,0)$, and $c=4$ 
+
+$$
+c \langle \bm{u}, \bm{v} \rangle = 	 4 (1^2 1^2 + 2^2 0^2 + 3^2 0^2) = 4(1) = 4
+$$
+
+$$
+\langle c \bm{u}, \bm{v} \rangle = \langle (4,8,12), (1,0,0) \rangle = 4^2 1^2 + 8(0) + 12(0) = 16 \ne 4
+$$
+
+\section{Orthogonal Bases: Gram-Schmidt Process}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Defintions of Orthogonal and Orthogonal Sets]
+	A set $S$ of vectors in an inner product space $V$ is \textbf{orthogonal} when every pair of vectors in $S$ is orthogonal. If, in addition, each vector in the set is a unit vector, then $S$ is \textbf{orthonormal}.
+	
+	For $S = \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_n}\}$ this definition has the form below.
+	
+	\begin{itemize}
+		\item \textbf{Orthogonal:} $\langle \bm{v_i}, \bm{v_j} \rangle = 0, i \ne j$
+		\item \textbf{Orthonormal:} $\langle \bm{v_i}, \bm{v_j} \rangle = 0, i \ne j \quad \| v_{i} \| = 1, i = 1,2,\hdots,n$
+	\end{itemize}
+	
+	If $S$ is a basis, then it is an \textbf{orthogonal basis} or an \textbf{orthonormal basis}, respectively.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Orthogonal Sets are Linearly Independet]
+	If $S = \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_n}\}$ is an orthogonal set of nonzero vectors in an inner product space $V$, then $S$ is linearly independent.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Corollary]
+	If $V$ is an inner product space of dimension $n$, then any orthogonal set of $n$ nonzero vectors is a basis for $V$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Coordinates Relative to an Orthonormal Basis]
+	If $B= \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_n}\}$ is an orthonormal basis for an inner product space $V$, then the coordinate system of a vector $\bm{w}$ relative to $B$ is 
+	
+	$$
+	\bm{w} = \langle \bm{w_1}, \bm{v_1} \rangle \bm{v_1} + \langle \bm{w_2}, \bm{v_2} \rangle \bm{v_2} + \hdots + \langle \bm{w_n}, \bm{v_n} \rangle \bm{v_n}
+	$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Gram-Schmidt Orthonormalization Process]
+	\begin{enumerate}
+			\item Let $B = \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_n} \}$ be a basis for an inner product space $V$
+			\item Let $B' = \{ \bm{w_1}, \bm{w_2}, \hdots, \bm{w_n} \}$ where
+			$$
+			\bm{w_1} = \bm{v_1}
+			$$
+			$$\bm{w_2} = \bm{v_2} - \frac{\langle \bm{v_2}, \bm{w_1} \rangle}{\langle \bm{w_1}, \bm{w_1} \rangle} \bm{w_1}	
+			$$
+			$$
+			\bm{w_3} = \bm{v_3} - \frac{\langle \bm{v_3}, \bm{w_1} \rangle}{\langle \bm{v_1}, \bm{v_1} \rangle} \bm{w_1} - \frac{\langle \bm{v_3}, \bm{w_2}\rangle}{\langle \bm{v_2}, \bm{v_2} \rangle} \bm{w_2}
+			$$
+			$$
+			\vdots
+			$$
+			$$
+			\bm{w_n} = \bm{v_n} - \frac{\langle \bm{v_3}, \bm{w_1} \rangle}{\langle \bm{v_1}, \bm{v_1} \rangle} \bm{w_1} - \frac{\langle \bm{v_3}, \bm{w_2}\rangle}{\langle \bm{v_2}, \bm{v_2} \rangle} \bm{w_2} - \hdots - \frac{\langle \bm{v_n}, \bm{w_{n-1}} \rangle}{\langle \bm{w_{n-1}}, \bm{w_{n-1}} \rangle} \bm{w_{n-1}}
+			$$
+			
+			Then $B'$ is an orthogonal basis for $V$
+			
+			\item Let $\bm{u_i} = \frac{\bm{w_i}}{\| \bm{w_i} \|}$. Then $B'' = \{ \bm{u_1}, \bm{u_2}, \hdots, \bm{u_n}\}$ is an orthonormal basis for $V$.	
+			
+	\end{enumerate}
+	
+	Also, $span\{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_k}\} = span \{\bm{u_1}, \bm{u_2}, \hdots, \bm{u_k}\}$ for $k = 1, 2, \hdots, n$.	
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	(a) Determine whether set of vectors is orthogonal. (b) If the set is orthogonal, then determine whether it is orthormal. (c) Determine whether the set is a basis for $\mathbb{R}^n$.
+	
+	$$
+	\{ (4,-1,1), (-1,0,4), (-4,-17,-1) \}
+	$$
+\end{tcolorbox}
+
+Starting with part a, we will find the inner product of all $n \choose 2$ possible vectors where $n$ is the number of vectors in the set.
+
+$$
+\langle \bm{v_1}, \bm{v_2} \rangle = -4 + 4 = 0
+$$
+
+$$
+\langle \bm{v_1}, \bm{v_3} \rangle = -16 + 17 - 1 = 0
+$$
+
+$$
+\langle \bm{v_2}, \bm{v_3} \rangle = 4 + 0 - 4 = 0
+$$
+
+Since all $3 \choose 2$ inner products equal $0$, the vectors are orthogonal. Now, for part b, the vectors all must be unit vectors for the set of vectors to be orthonormal. Let's check $\bm{v_1}$
+
+$$
+\| \bm{v_1} \| = \sqrt{\langle \bm{v_1}, \bm{v_1} \rangle} = \sqrt{16 + 1 + 1} = 3\sqrt{2}\ne 1 
+$$
+
+Therefore, the set is not orthonormal. Finally, for part c, we must check for linear independence.
+
+$$
+c_1 \begin{bmatrix} 4 \\ -1 \\ 1 \end{bmatrix} + c_2 \begin{bmatrix} -1 \\ 0 \\ 4 \end{bmatrix} + c_3 \begin{bmatrix} -4 \\ -17 \\ -1 \end{bmatrix} = 0
+$$
+
+$$
+\begin{bmatrix} 4 & -1 & -4 & 0 \\ -1 & 0 & -17 & 0 \\ 1 & 4 & -1 & 0 \end{bmatrix} \xRightarrow{\text{RREF}} \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0  \end{bmatrix}
+$$
+
+Therefore, $c_1 = c_2 = c_3 = 0$ and the set is linearly independent. Since the set is linearly independent and has 3 vectors, the set is a basis for $\mathbb{R}^3$.\\
+
+\begin{tcolorbox}[colframe = lightred]
+	(a) Show that the set of vectors in $\mathbb{R}^n$ is orthogonal, and (b) normalize the set to produce an orthonormal set.
+	
+	$$
+	 \{ (\sqrt{3}, \sqrt{3}, \sqrt{3}), (-\sqrt{2}, 0, \sqrt{2})\}
+	$$
+\end{tcolorbox}
+
+
+Starting with part a, as in the previous problem, we need to show that all combinations of 2 vectors in the set have an inner product of zero. There are only two vectors, so this simplifies the process
+
+$$
+\langle \bm{v_1}, \bm{v_2} \rangle = -\sqrt{6} + \sqrt{6} = 0
+$$
+
+Now, for part b, we must ensure that all of the vectors in the set are unit vectors. To do this, we will divide the vectors by their magnitude.
+
+$$
+\| \bm{v_1} \| = \sqrt{\langle \bm{v_1}, \bm{v_1} \rangle} = \sqrt{3+3+3} = 3
+$$
+
+$$
+\frac{\bm{v_1}}{\| \bm{v_1} \|} = \frac{(\sqrt{3}, \sqrt{3}, \sqrt{3})}{3} = \left(\frac{\sqrt{3}}{3}, \frac{\sqrt{3}}{3}, \frac{\sqrt{3}}{3}\right)
+$$
+
+$$
+\| \bm{v_2} \| = \sqrt{\langle \bm{v_2}, \bm{v_2} \rangle} = \sqrt{2+2} = 2
+$$
+
+$$
+\frac{\bm{v_2}}{\| \bm{v_2} \|} = \frac{(-\sqrt{2}, 0, \sqrt{2})}{2} = \left( -\frac{\sqrt{2}}{2}, 0, \frac{\sqrt{2}}{2}\right)
+$$
+
+Therefore, the orthogonal set is
+
+$$
+\left\{ \left(\frac{\sqrt{3}}{3}, \frac{\sqrt{3}}{3}, \frac{\sqrt{3}}{3}\right),  \left( -\frac{\sqrt{2}}{2}, 0, \frac{\sqrt{2}}{2}\right) \right\}
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the coordinate matrix of $\bm{w}$ relative to the orthonormal basis $B$ in $\mathbb{R}^n$
+	
+	$$
+	\bm{w} = (2,-2,1), B = \left\{ \left( \frac{\sqrt{10}}{10}, 0, \frac{3\sqrt{10}}{10}\right), (0,1,0), \left( \frac{-3\sqrt{10}}{10}, 0, \frac{\sqrt{10}}{10} \right)\right\}
+	$$
+\end{tcolorbox}
+
+$$
+\langle \bm{w}, \bm{v_1} \rangle =	(2,-2,1) \cdot \left(\frac{\sqrt{10}}{10}, 0, \frac{3\sqrt{10}}{10} \right)
+$$
+
+$$
+= \frac{2\sqrt{10}}{10} + 0 + \frac{3\sqrt{10}}{10} = \frac{5\sqrt{10}}{10} = \boxed{\frac{\sqrt{10}}{2}}
+$$
+
+$$
+\langle \bm{w}, \bm{v_2} \rangle = (2,-2,1) \cdot (0,1,0) = \boxed{-2}
+$$
+
+$$
+\langle \bm{w}, \bm{v_3} \rangle = (2,-2,1) \cdot \left( -\frac{3\sqrt{10}}{10}, 0, \frac{\sqrt{10}}{10} \right)
+$$
+
+$$
+= -\frac{3\sqrt{10}}{5} + \frac{\sqrt{10}}{10} =\boxed{ -\frac{\sqrt{10}}{2}}
+$$
+
+$$
+\implies [\bm{w}]_B = \begin{bmatrix} \frac{\sqrt{10}}{2} \\ -2 \\  -\frac{\sqrt{10}}{2} \end{bmatrix} 
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Apply the Gram-Schmidt orthonormalizatoin process to transform the given basis for $\mathbb{R}^n$ into an orthonormal basis. Use the vectors in the order in which they are given
+	
+	$$
+	B = \{(4,-3,0), (1,2,0), (0,0,4)\}
+	$$
+	
+\end{tcolorbox}
+
+$$
+\bm{w_1} = \bm{v_1} = (4,-3,0)
+$$
+
+$$
+\bm{w_2} = \bm{v_2} - \frac{\langle \bm{v_2}, \bm{w_1} \rangle}{\langle \bm{w_1}, \bm{w_1} \rangle}\bm{w_1} 
+$$
+
+$$
+= (1,2,0) - \frac{1(4) + 2(-3) + 0(0)}{16+9} (4,-3,0) = (1,2,0) + \frac{2}{25} (4,-3,0) = (1,2,0) + \left(\frac{8}{25}, - \frac{6}{25}, 0 \right)
+$$
+$$
+= \left( \frac{33}{25}, \frac{44}{25}, 0 \right)
+$$
+
+$$\bm{w_3} = \bm{v_3} - \frac{\langle \bm{v_3}, \bm{w_1} \rangle}{\langle \bm{w_1}, \bm{w_1} \rangle}  \bm{w_1}  - \frac{\langle \bm{v_3}, \bm{w_2} \rangle}{\langle \bm{w_2}, \bm{w_2} \rangle} = (0,0,4) - 0\left(\frac{33}{25}, \frac{44}{25}, 0 \right) - 0(4,-3,0)
+$$
+
+$$
+=(0,0,4)
+$$
+
+\section{Mathematical Models and Least Squares Analysis}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Least Squares Problem]
+		Given an $m \times n$ matrix $A$ and a vector $\bm{b}$ in $\mathbb{R}^m$, the \textbf{least squares problem} is to find $\bm{x}$ in $\mathbb{R}^n$ such that $\| A\bm{x} - \bm{b} \| ^2$ is minimized.
+		
+		\paragraph{Remark} The term \textbf{least squares} come from the fact that minimizing $\| A\bm{x} - \bm{b} \| $ is equivalent to minimizing $\| A\bm{x} - \bm{b} \| ^ 2$, which is a sum of squares.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Orthogonal Subspaces]
+		The subspaces $S_1$ and $S_2$ of $\mathbb{R}^n$ are \textbf{orthogonal} when $\bm{v_1} \cdot \bm{v_2} = 0 \ \forall \  \bm{v_1} \in S_1, \forall \ 	\bm{v_2} \in S_2$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Orthogonal Complement]
+	If $S$ is a subspace of $\mathbb{R}^n$, then the \textbf{orthogonal complement} of $S$ is the set $S^\perp = \{ \bm{u} \in \mathbb{R}^n: \bm{v} \cdot \bm{u} = 0 \ \forall \  \bm{v} \in S\}$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Direct Sum]
+	Let $S_1$ and $S_2$ be two subspaces of $\mathbb{R}^n$. If each vector $\bm{x} \in \mathbb{R}^n$ can be uniquely written as a sum of a vector $\bm{s_1}$ from $S_1$ and a vector $\bm{s_2}$ from $S_2$, $\bm{x} = \bm{s_1} + \bm{s_2}$, then $\mathbb{R}^n$ is the \textbf{direct sum} of $S_1$ and $S_2$ and you can write $\mathbb{R}^n = S_1 \oplus S_2$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Properties of Orthogonal Subspaces]
+	Let $S$ be a subspace of $\mathbb{R}^n$. Then the properties listed below are true:
+	
+	\begin{enumerate}
+		\item $\dim{S} + \dim{S^\perp} = n$
+		\item $\mathbb{R}^n = S \oplus S^\perp$
+		\item $\left( S^\perp \right)^\perp = S$
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Projection onto a Subspace]]
+	If $\{ \bm{u_1}, \bm{u_2}, \hdots, \bm{u_t}\}$ is an orthonormal basis for the subspace $S$ of $\mathbb{R}^n$, and $\bm{v} \in \mathbb{R}^n$, then 
+	
+	$$
+	proj_S  \bm{v} = (\bm{v} \cdot \bm{u_1}) \bm{u_1} + (\bm{v} \cdot \bm{u_2}) \bm{u_2} + \hdots + (\bm{v} \cdot \bm{u_t}) \bm{u_t}
+	$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Funbdamental Subspaces of a Matrix]
+	Recall that if $A$ is an $m \times n$ matrix, then the column space of $A$ is a subspace of $\mathbb{R}^m$ consisting of all vectors of the form $A\bm{x}, \ \bm{x} \in \mathbb{R}^n$. The four \textbf{fundamental subspaces} of the matrix $A$ are listed below:
+	
+	\begin{itemize}
+		\item $N(A) = $ nullspace of $A$
+		\item $N(A^T) = $ nullspace of $A^T$
+		\item $R(A) = $ column space of $A$
+		\item $R(A^T) = $ column space of $A^T$
+	\end{itemize}
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	Determine whether the subspaces are orthogonal
+	
+	$$
+	S_1 = span \left\{ \begin{bmatrix} 3 \\ 2 \\ -2 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}\right\} \quad S_2 = span \left\{ \begin{bmatrix} 2 \\ -3 \\ 0 \end{bmatrix} \right\}\
+	$$
+\end{tcolorbox}
+
+$$
+\bm{v_1} \cdot \bm{u_1}  =(3,2,-2) \cdot (2, -3, 0) = 6 - 6 = 0
+$$
+
+$$
+\bm{v_2} \cdot \bm{u_1} = (0,1,0) \cdot (2,-3,0) = 0 - 3 + 0 = -3 \ne 0
+$$
+
+Therefore, $S_1$ and $S_2$ are not orthogonal\\
+
+\begin{tcolorbox}[colframe = lightred]
+	Find (a) the orthogonal complement and (b) the direct sum
+	
+	$$
+	S_1 = span \left\{ \begin{bmatrix} 0 \\ 1 \\ -1  \\ 1 \end{bmatrix} \right\}
+	$$
+\end{tcolorbox}
+
+\paragraph{a.}
+
+$$
+(0,1, -1,1) \cdot (x_1, x_2, x_3, x_4) = 0 
+$$
+
+$$
+x_2 - x_3 + x_4 = 0  
+$$
+
+$$
+\begin{cases}
+	x_1 = t \\ x_2 = x_3 - x_4 \\ x_3 \\ x_4 
+\end{cases}
+\implies \begin{bmatrix}	t \\ r - w\\ r \\ w \end{bmatrix} = \begin{bmatrix} t \\ 0 \\ 0 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ r \\ r \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ -w \\ 0 \\ w \end{bmatrix}
+$$
+
+Thus 
+
+$$
+S^\perp = \left\{ t \begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} + r \begin{bmatrix} 0 \\ 1 \\ 1 \\ 0 \end{bmatrix} + w \begin{bmatrix} 0 \\ -1 \\ 0 \\ 1 \end{bmatrix}: t, r, w \in \mathbb{R} \right\} = span \left\{ \begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ -1 \\ 0 \\ 1 \end{bmatrix} \right\}
+$$
+
+\paragraph{b.} 
+
+$$
+S \oplus S^\perp = \mathbb{R}^4
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the projection of the vector $\bm{v}$ onto the subspace $S$
+	
+	$$
+	S = span \left\{ \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 0 \\1 \\ 1 \end{bmatrix} \right\} \quad \bm{v} = \begin{bmatrix} 2 \\ 3 \\ 4 \end{bmatrix}
+	$$
+\end{tcolorbox}
+
+First, we will start with the Gram-Schmidt process:
+
+$$
+\bm{w_1} = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}
+$$
+
+$$
+\bm{w_2} = \begin{bmatrix} 0 \\ 1 \\ 1  \end{bmatrix} - \frac{\begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}}{\begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}} \begin{bmatrix} 1 \\ 0 \\ 1 	\end{bmatrix} = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} - \frac{1}{2} \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} = \begin{bmatrix} -\frac{1}{2} \\ 1 \\ \frac{1}{2} \end{bmatrix}
+$$
+
+$$
+\implies \left\{ \frac{(1,0,1)}{\sqrt{2}}, \frac{\left( -\frac{1}{2},1,\frac{1}{2}\right)}{\sqrt{\frac{3}{2}}} \right\} = \left\{ \begin{bmatrix} \frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}} \end{bmatrix}, \begin{bmatrix} - \frac{1}{\sqrt{6}} \\ \frac{2}{\sqrt{6}} \\ \frac{1}{\sqrt{6}} \end{bmatrix} \right\}
+$$
+
+This is the orthonormal basis for $S$. Now, we can get the projection of $\bm{v}$ onto $S$
+
+$$
+proj_{s} \bm{v} = \left( \begin{bmatrix} 2 \\ 3 \\ 4 \end{bmatrix} \cdot  \begin{bmatrix} \frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}} \end{bmatrix} \right)  \begin{bmatrix} \frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}} \end{bmatrix} + \left( \begin{bmatrix} 2 \\ 3 \\ 4 \end{bmatrix} \cdot  \begin{bmatrix} - \frac{1}{\sqrt{6}} \\ \frac{2}{\sqrt{6}} \\ \frac{1}{\sqrt{6}} \end{bmatrix} \right) \begin{bmatrix} - \frac{1}{\sqrt{6}} \\ \frac{2}{\sqrt{6}} \\ \frac{1}{\sqrt{6}} \end{bmatrix} 
+$$
+
+$$
+= \left( \frac{2}{\sqrt{2}} + \frac{4}{\sqrt{2}} \right) \begin{bmatrix} \frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}} \end{bmatrix} + \left( -\frac{2}{\sqrt{6}} + \frac{6}{\sqrt{6}} + \frac{4}{\sqrt{6}} \right) \begin{bmatrix} -\frac{1}{\sqrt{6}} \\ \frac{2}{\sqrt{6}} \\ \frac{1}{\sqrt{6}} \end{bmatrix} = \frac{6}{\sqrt{2}} \begin{bmatrix} \frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}} \end{bmatrix} + \frac{8}{\sqrt{6}} \begin{bmatrix} -\frac{1}{\sqrt{6}} \\ \frac{2}{\sqrt{6}} \\ \frac{1}{\sqrt{6}} \end{bmatrix} 
+$$
+
+$$
+= \begin{bmatrix} 3 \\ 0 \\ 3 \end{bmatrix} + \begin{bmatrix} =\frac{8}{6} \\ \frac{16}{6} \\ \frac{8}{6} \end{bmatrix} = \boxed{\begin{bmatrix} \frac{5}{3} \\ \frac{8}{3} \\ \frac{13}{3} \end{bmatrix}}
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Find bases for the four fundamental subspaces of the matrix $A$
+	
+	$$
+	\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \\ 1 & 1  & 1 \\ 1 & 2 & 2 \end{bmatrix}
+	$$
+\end{tcolorbox}
+
+Let's start with $N(A)$ (or the nullspace):
+
+$$
+\begin{bmatrix} 1  & 0 & 0 & 0 \\ 0 & 1 & 1 & 0 \\ 1 & 1 & 1 & 0 \\ 1 & 2 & 2 & 0 \end{bmatrix} \xRightarrow{\text{RREF}} \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1  & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \implies 
+\begin{cases}
+	x_1 = 0 \\ x_2 + x_3 = 0
+\end{cases}
+\implies
+\begin{cases}
+	x_1 = 0 \\ x_2 = -t \\ x_3 = t 
+\end{cases}
+$$
+
+Therefore, $\begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}$ is the basis for the nullspace of $A$. From the reduced row-echelon form of the matrix above, we can see that the leading ones are in columns one and two. Therefore the basis for $R(A)$ is ,
+
+$$
+R(A) = \left\{ \begin{bmatrix} 1 \\ 0 \\ 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 1 \\ 2 \end{bmatrix} \right\}
+$$
+
+Now, for $N(A^T)$:
+
+$$
+\begin{bmatrix} 1 & 0 & 1 & 1 & 0 \\ 0 & 1 & 1 & 2 & 0 \\ 0 & 1 & 1 & 2 & 0 \end{bmatrix} \xRightarrow{RREF} \begin{bmatrix} 1 & 0 & 1 & 1 & 0 \\ 0 & 1 & 1 & 2 & 0 \\ 0 & 0 & 0 & 0 & 0 \end{bmatrix} \implies \begin{cases} x_1 = -x_3 - x_4 \\ x_2 = -x_3 - 2x_4 \end{cases} \implies \begin{cases} x_1 = -t - r \\ x_2 = -t - 2r  \\ x_3 = t \\ x_4 = r \end{cases}
+$$
+
+$$
+\begin{bmatrix} -t - r \\ -t - 2r \\ t \\ r \end{bmatrix} = \begin{bmatrix} -t \\ -t \\ t \\ 0 \end{bmatrix} + \begin{bmatrix} -r \\ -2r \\ 0 \\ r \end{bmatrix} \implies N(A^T) = \left\{ \begin{bmatrix} -1 \\ -1 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix}-1 \\ -2 \\ 0 \\ -1 \end{bmatrix} \right\}
+$$
+
+From the work above, we can see that the leading ones are in columns one and two. Therefore, for $R(A^T)$, we have:
+
+$$
+R(A^T) = \left\{ \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix}
+	 0 \\ 1 \\ 1 \end{bmatrix} \right\}
+$$
+
+\section{Applications of Inner Product Spaces}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definition of the Cross Product of Two Vectors]
+	Let $\bm{u} = u_1 \bm{i} + u_2 \bm{j} + u_3 \bm{k}$ and $\bm{v} = v_1 \bm{i} + v_2 \bm{j} + v_3 \bm{k}$ be vectors in $\mathbb{R}^3$. The \textbf{cross product} of $\bm{u}$ and $\bm{v}$ is the vector
+	
+	$$
+	\bm{u} \times \bm{v} = (u_2 v_3 - u_3v_2) \bm{i} - (u_1 v_3 - u_3 v_1) \bm{j} + (u_1 v_2 - u_2 v_1) \bm{k}
+	$$
+	
+	A convenient way to remember the formula for the cross product $\bm{u} \times \bm{v}$ is to use the determinant form:
+	
+	$$
+	\bm{u} \times \bm{v} = \begin{vmatrix} \bm{i} & \bm{j} & \bm{k} \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{vmatrix}
+	$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Algebraic Properties of the Cross Product]
+	If $\bm{u}$, $\bm{v}$, and $\bm{w}$ are vectors in $\mathbb{R}^3$ and $c$ is a scalar, then the properties listed below are true
+	\begin{enumerate}
+		\item $\bm{u} \times \bm{v} = - (\bm{v} \times \bm{u})$
+		\item $\bm{u} \times (\bm{v} + \bm{w}) = (\bm{u} \times \bm{v}) + (\bm{u} \times \bm{w})$
+		\item $c(\bm{u} \times \bm{v}) = c\bm{u} \times \bm{v} = \bm{u} \times c\bm{v}$
+		\item $\bm{u} \times 0 = 0 \times \bm{u} = 0$
+		\item $\bm{u} \times \bm{u} = 0$
+		\item $\bm{u} \cdot (\bm{v} \times \bm{w}) = (\bm{u} \times \bm{w}) \cdot \bm{w}$
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Geometric Properties of the Cross Product]
+	If $\bm{u}$ and $\bm{v}$ are nonzero vectors in $\mathbb{R}^3$, then the properties listed below are true.
+	
+	\begin{enumerate}
+		\item $\bm{u} \times \bm{v}$ is orthogonal to both $\bm{u}$ and $\bm{v}$
+		\item The angle $\theta$ between $\bm{u}$ and $\bm{v}$ is found using $\| \bm{u} \times \bm{v} \| = \| \bm{u} \| \| \bm{v} \| \sin \theta$
+		\item $\bm{u}$ and $\bm{v}$ are parallel iff $\bm{u} \times \bm{v} = 0$
+		\item The parallelogram having $\bm{u}$ and $\bm{v}$ as adjacent sides has an area of $\| \bm{u} \times \bm{v} \|$
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Fourier Approximation]
+	On the interval $(0, 2\pi]$, the least squares approximation of a continuous function $f$ with respect to the vector space spanned by 
+	
+	$$
+	\{ 1, \cos x, \hdots, \cos nx, \sin x, \hdots, \sin nx\}
+	$$
+	
+	is 
+	
+	$$
+	g(x) = \frac{a_0}{2} + a_1 \cos x + \hdots + a_n \cos nx + b_1 \sin x + \hdots + b_n \sin nx
+	$$
+	
+	where the \textbf{Fourier coefficients} $a_0, a_1, \hdots a_n, b_1, \hdots, b_n$ are
+	
+	$$
+	a_0 = \frac{1}{\pi} \int_0^{2\pi} f(x)dx
+	$$
+	
+	$$
+	a_j = \frac{1}{\pi}	\int_0^{2\pi} f(x) \cos jx dx \quad j = 1, 2, \hdots n
+	$$
+	
+	$$
+	b_j = \frac{1}{2\pi} \int_0^{2\pi} f(x) \sin jx dx \quad j = 1, 2, \hdots, n
+	$$
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	Find $\bm{u} \times \bm{v}$, and show that it it orhtogonal to both $\bm{u}$ and $\bm{v}$ 
+	
+	$$
+	\bm{u} = (0,1,-2) \quad \bm{v} = (1,-1,0)
+	$$
+\end{tcolorbox}
+
+$$
+\bm{u} \times \bm{v} = \begin{vmatrix} \bm{i} & \bm{j} & \bm{k} \\ 0 & 1 & -2 \\ 1 & -1 & 0 \end{vmatrix} = \bm{i} \begin{vmatrix} 1 & -2 \\ -1 & 0 \end{vmatrix} - \bm{j} \begin{vmatrix} 0 & -2 \\ 1 & 0 \end{vmatrix} + \bm{k} \begin{vmatrix} 0 & 1 \\ 1 & -1 \end{vmatrix}$$
+
+$$
+= -2 \bm{i}  - 2 \bm{j} - \bm{k} = (-2,-2,-1)
+$$
+
+Now, to show that both $\bm{u}$ and $\bm{v}$ are orthogonal to $\bm{u} \times \bm{v}$, we have
+
+$$
+(0,1,-2) \cdot (-2,-2,-1) = -2 + 2 = 0
+$$
+
+$$
+(1,-1,0) \cdot (-2,-2,-1) = -2 + 2 = 0
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the area of the parrallelogram that has the vectors as adjacent sides.
+	
+	$$
+	\bm{u} = (3,2,-1) \quad \bm{v} = (1,2,3)
+	$$
+\end{tcolorbox}
+
+The area of the parallelogram will be $\| \bm{u} \times \bm{v} \|$. Let's first compute $\bm{u} \times \bm{v}$
+
+$$
+\bm{u} \times \bm{v} = \begin{vmatrix} \bm{i} & \bm{j} & \bm{k} \\ 3 & 2 & -1 \\ 1 & 2 & 3 \end{vmatrix} = \bm{i} \begin{vmatrix} 2 & -1 \\ 2 & 3 \end{vmatrix} - \bm{j} \begin{vmatrix} 3 & -1 \\ 1 & 3 \end{vmatrix} + \bm{k} \begin{vmatrix} 3 & 2 \\ 1 & 2 \end{vmatrix} = 8\bm{i} - 10\bm{j} + 4\bm{k}
+$$
+
+Now, let's compute $\| \bm{u} \times \bm{v} \|$
+
+$$
+\| \bm{u} \times \bm{v} \| = \sqrt{64+100+16} = \sqrt{180} = 6\sqrt{5}
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the Fourier approximation with the specified order of the function on the interval $[0,2\pi]$\\\\
+	
+	Third Order: 
+	$$
+	f(x) = \pi - x 
+	$$
+\end{tcolorbox}
+
+$$
+g(x) = \frac{a_0}{2} + a_1 \cos x + a_2 \cos 2x + a_3 \cos 3x + b_1 \sin x + b_2 \sin 2x + b_3 \sin 3x
+$$
+
+$$
+a_0 = \frac{1}{\pi} \int_0^{2\pi} f(x)dx = \frac{1}{\pi} \int_0^{2\pi} (\pi - x)dx = -\frac{1}{\pi} \frac{(\pi-x)^2}{2} \Big|_0^{2\pi} = -\frac{1}{2\pi} (\pi - x)^2 \Big|_0^{2\pi}
+$$
+
+$$
+= - \frac{1}{2\pi} \left( (\pi - 2\pi)^2 - (\pi - 0)^2 \right) = -\frac{1}{2\pi} (\pi^2 - \pi^2) = 0
+$$
+
+$$
+a_{j} = \frac{1}{\pi} \int_0^{2\pi} (\pi - x)\cos jx dx = \left( \frac{1}{\pi j} (\pi - x) \sin jx - \frac{1}{\pi j^2} \cos jx \right) \Big|_0^{2\pi}
+$$
+
+$$
+= \left( \frac{1}{\pi j} (\pi - 2 \pi) \cdot 0 - \frac{1}{\pi j^2} (1) \right) - \left( \frac{1}{\pi j}(\pi - 0)(0) - \frac{1}{\pi j^2} (1) \right) = -\frac{1}{\pi j^2} + \frac{1}{\pi j^2} = 0
+$$
+
+$$
+b_{j} = \frac{1}{\pi} \int_0^{2\pi} f(x) \sin jx dx = \frac{1}{\pi} \int_0^{2\pi} (\pi - x) \sin jx dx =  \left( -\frac{1}{\pi j} (\pi - x) \cos jx - \frac{1}{\pi j^2} \sin jx \right) \Big|_0^{2\pi}
+$$
+
+$$
+= \left( -\frac{1}{\pi j} (\pi - 2\pi) (1) - 0 \right) - \left( -\frac{1}{\pi j} (\pi) (1) - 0 \right) = -\frac{1}{\pi j} (-\pi) + \frac{1}{j} = \frac{1}{j} + \frac{1}{j} = \frac{2}{j}
+$$
+
+$$
+\therefore g(x) = \frac{0}{2} + 0 + 0 + 0 + 2\sin x + 1 \cdot \sin 2x + \frac{2}{3} \sin 3x =  2 \sin x + \sin 2x + \frac{2}{3} \sin 3x
+$$
+
+\chapter{Unit 6}
+
+\section{Introduction to Linear Transformations}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Images and Preimages of Functions]
+	In this chapter, we discuss functions that \textbf{map} a vector space $V$ into a vector space $W$. This type of function is denoted by 
+	
+	$$
+	T: V \to W
+	$$
+	
+	The standard terminology is used for such functions. For instance, $V$ is the \textbf{domain} of $T$, and $W$ is the \textbf{codomain} of $T$. If $\bm{v}$ is in $V$ and $\bm{w}$ is in $W$ such that $T(\bm{v}) = \bm{w}$, then $\bm{w}$ is the \textbf{image} of $\bm{v}$ under $T$. The set of all images of vectors in $V$ is the \textbf{range} of $T$, and the set of all $\bm{v}$ in $V$ such that $T(\bm{v}) = \bm{w}$ is the \textbf{preimage} of $\bm{w}$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of a Linear Transformation]
+	Let $V$ and $W$ be vector spaces. The function
+	
+	$$
+	T: V \to W
+	$$
+	
+	is a \textbf{linear transformation} of $V$ into $W$ when the two properties below are true for all $\bm{u}$ and $\bm{v}$ in $V$ and for any scalar $c$.
+	\begin{enumerate}
+		\item $T(\bm{u} + \bm{v}) = T(\bm{u}) + T(\bm{v})$
+		\item  $T(c\bm{u}) = cT(\bm{u})$
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Properties of Linear Transformations]
+	Let $T$ be a linear transformation from $V$ into $W$, where $\bm{u}$ and $\bm{v}$ are in $V$. Then the properties listed below are true.
+	\begin{enumerate}
+		\item $T(0) = 0$
+		\item $T(-\bm{v}) = -T(\bm{v})$
+		\item $T(\bm{u} - \bm{v}) = T(\bm{u}) - T(\bm{v})$
+		\item If $\bm{v} = c_1 v_1 + c_2 v_2 + \hdots + c_n v_n$ then $T(\bm{v}) = T(c_1 v_1 + c_2 v_2 \hdots c_n v_n) = c_1 T(v_1) + c_2 T(v_2) + \hdots + c_n T(v_n)$
+		
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Linear Transformation Given by a Matrix]
+	Let $A$ be an $m \times n$  matrix. The function $T$ is defined by 
+	
+	$$
+	T(\bm{v}) = A \bm{v}
+	$$
+	
+	is a linear transformation from $\mathbb{R}^n$ into $\mathbb{R}^m$. In order to conform to matrix multiplication with an $m \times n$ matrix, $n \times 1$ matrices represent vectors in $\mathbb{R}^n$ and $m \times 1 $ matrices represent the vectors in $\mathbb{R}^m$.
+\end{tcolorbox}
+
+\paragraph{Some Other Examples of Linear Transformations}
+
+$$
+T: \mathbb{R}^2 \to \mathbb{R}^2, A = \begin{bmatrix} \cos \theta & - \sin \theta \\ \sin \theta & \cos \theta \end{bmatrix}
+$$
+
+\noindent This rotates a vector counterclockwise about the origin through the angle $\theta$.
+
+$$
+T: \mathbb{R}^3 \to \mathbb{R}^3, A = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix} 
+$$
+
+\noindent $T$ maps every vector in $\mathbb{R}^3$ to its orthogonal projection on the $xy$-plane
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	
+	Determine whether the function is a linear transformation
+	$$
+	T: \mathbb{R}^3 \to \mathbb{R}^3, T(x,y,z) = (x+1, y+1,z+1)
+	$$
+\end{tcolorbox}
+
+$$
+T(1,1,1) + T(1,1,1) = \ne T(2,2,2)
+$$
+
+$$
+(2,2,2)	 + (2,2,2) = (4,4,4) \ne T(2,2,2) = (3,3,3)
+$$
+
+\noindent Therefore, $T$ is not a linear transformation
+
+\begin{tcolorbox}[colframe = lightred]
+	Determine whether the function is a linear transformation
+	
+	$$
+	T: M_{2,2} \to R, T(A) = a + b + c + d, where A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}
+	$$
+\end{tcolorbox}
+
+$$
+T(A_1) + T(A_2) = T \left( \begin{bmatrix} a_1 & b_1 \\ c_1 & d_1 \end{bmatrix} \right) + T \left( \begin{bmatrix} a_2 & b_2 \\ c_2 & d_2 \end{bmatrix} \right)
+$$
+
+$$
+= a_1 + b_1 + c_1 + d_1 + a_2 + b_2 + c_2 + d_2 = (a_1 + a_2) + (b_1 + b_2) + (c_1 + c_2) + (d_1 + d_2)  =T (A_1 + A_2)
+$$
+
+\noindent Therefore, $T$ preserves addition.
+
+$$
+T(kA) = ka + kb + kc + kd = = k (a+b+c+d) = kT(A)
+$$
+
+\noindent Therefore, $T(A)$ preserves scalar multiplication.
+
+\begin{tcolorbox}[colframe = lightred]
+	Use the function to find (a) the image of $\bm{v}$ and (b) the preimage of $\bm{w}$
+	
+	$$
+	T(v_1, v_2, v_3) = (2v_1 + v_2, v_1  - v_2), \bm{v} = (2,1,4), \bm{w} =(-1,2)
+	$$
+\end{tcolorbox}
+
+$$
+a. \quad \quad T(\bm{v}) = (2(2)+1,, 1) = (5,1)
+$$
+
+$$
+b. \quad \quad T(v_1, v_2, v_3) = (2v_1 + v_2, v_1 - v_2) = (-1,2)
+$$
+
+$$
+\begin{cases}
+	2v_1 + v_2 = -1 \\
+	v_1 - v_2 = 2 
+\end{cases}
+\implies
+\begin{bmatrix} 2 & 1 & -1 \\ 1 & -1 & 2 \end{bmatrix} \xrightarrow{R_1 + R_2 \to R_2}
+\begin{bmatrix} 2 & 1 & -1 \\ 3 & 0 & 1 \end{bmatrix} \implies 
+\begin{cases}
+	v_1 = \frac{1}{3}\\
+	2\left(\frac{1}{3}\right) + v_2 = -1 \implies v_2 = -\frac{5}{3} \\
+	v_3 = t
+\end{cases}
+$$
+
+\noindent Therefore, the preimage of $\bm{w}$ is 
+
+$$
+\left\{ \begin{bmatrix} \frac{1}{3} \\ -\frac{5}{3} \\ t \end{bmatrix}: t \in \mathbb{R} \right\}
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Use the function to find (a) the image of $\bm{v}$ and (b) the preimage of $\bm{w}$
+	
+	$$
+	T(v_1, v_2) = \left( \frac{\sqrt{3}}{2} v_1 - \frac{1}{2} v_2, v_1 - v_2, v_2 \right) \quad \bm{v} = (2,4) \quad \bm{w} = (\sqrt{3}, 2, 0)
+	$$
+\end{tcolorbox}
+
+$$
+a. \quad \quad T(2,4) = \left( \frac{\sqrt{3}}{2} - \frac{1}{2} (4), 2-4, 4\right) = (\sqrt{3} -2, -2, 4)
+$$
+
+$$
+b. \quad \quad \left( \frac{\sqrt{3}}{2} v_1 - \frac{1}{2} v_1, v_1 - v_2, v_2 \right) = (\sqrt{3}, 2, 0)
+$$
+
+$$
+\begin{cases}
+	\frac{\sqrt{3}}{2} v_1 - \frac{1}{2} v_2 = \sqrt{3} \\
+	v_1 - v_2 = 2 \\ v_2 = 0 \implies v_1 = 2
+\end{cases}
+$$
+
+Therefore, the preimage of $\bm{w}$ is (2,0).
+
+\begin{tcolorbox}[colframe = lightred]
+	Define the linear transformation $T: \mathbb{R}^n \to \mathbb{R}^m$ by $T(v) = A\bm{v}$. Find the dimensions of $\mathbb{R}^n$ and $\mathbb{R}^m$.
+\end{tcolorbox}
+
+\section{The Kernel and Range of a Linear Transformation}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definition of Kernel of a Linear Transformation]
+	Let $T: V \to W $ be a linear transformation. Then the set of all vectors $\bm{v}$ in $V$ that satisfy $T(\bm{v}) = \bm{0}$ is the textbf{kernel} of $T$ and is denoted by $\ker (T)$.
+	
+	\paragraph{Note:} The kernel is a subspace of the domain $V$.
+\end{tcolorbox}	
+
+\begin{tcolorbox}[title = Corollary]
+	Let $T: \mathbb{R}^n \to \mathbb{R}^m$ be the linear transformation $T(\bm{x}) = A \bm{x}$. Then the kernel of $T$ is equal to the solution space of $A\bm{x} = \bm{0}$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = The Range of $T$ is a subspace of $W$]
+	The range of a linear transformation $T: V \to W$ is a subspace of $W$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Corollary]
+	Let $T: \mathbb{R}^n \to \mathbb{R}^m$ be the linear transformation $T(\bm{x}) = A \bm{x}$. Then the column space of $A$ is equal to the range of $T$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Rank and Nullity of a Linear Transformation]
+	Let $T: V \to W$ be a linear transformation. The dimension of the kernel of $T$ is called the \textbf{nullity} of $T$ and is denoted by $nullity(T)$ The dimension of the range of $T$ is called the \textbf{rank} of $T$ and is denoted by $rank(T)$.	
+	
+	\paragraph{Remark} If $T$ is given by a matrix $A$, then the rank of $T$ is equal to the rank of $A$, and the nullity of $T$ is equal to the nullity of $A$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Sum of Rank and Nullity]
+	Let $T: V \to W$ be a linear transformation from an $n-$dimensional vector space $V$ into a vector space $W$. Then the sum of the dimensions of the range and kernel is equal to the dimension of the domain.	That is,
+	
+	$$
+	rank(T) + nullity(T) = n
+	$$
+	
+	or 
+	
+	$$
+	\dim (range) + \dim (kernel) = \dim (domain)
+	$$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of One-to-One and Onto]
+	A function $T: V \to W$ is \textbf{one-to-one} when the preimage of every $\bm{w}$ in the range consists of a single vector. A function $T: V \to W$ is \textbf{onto} when every element in $W$ has a preimage in $V$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = One-to-One Transformations]
+	Let $T: V \to W$ be a linear transformation. Then $T$ is one-to-one iff $\ker(T) = \{ 0\}$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Onto Linear Transformations]
+	Let $T: V \to W$ be a linear transformation, where $W$ is finite dimensional. Then $T$ is onto iff the rank of $T$ is equal to the dimension of $W$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = One-to-One and Onto Linear Transformations]
+		Let $T: V \to W$ be a linear transformation with vector spaces $V$ and $W$, both of dimension $n$. Then $T$ is one-to-one iff it is onto
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of Isomorphism]
+	A linear transformation $T: V \to W$ that is one-to-one and onto is called an \textbf{isomorphism}. Moreover, if $V$ and $W$ are vector-spaces such that there exists an isomorphism from $V$ to $W$, then $V$ and $W$ are \textbf{isomorphic} to each other.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Isomorphic Spaces and DImensions]
+	Two finite-dimensional vector spaces $V$ and $W$ are isomorphic iff they are of the same dimension.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Isomorphic Vector Spaces]
+	The vector spaces below are isomorphic to each other.
+	
+	\begin{enumerate}
+		\item $\mathbb{R}^4 = $ 4-space
+		\item $M_{41} = $ space of all $4 \times 1$ matrices
+		\item  $M_{22} = $ space of all $2 \times 2$ matrices
+		\item $P_3 = $ space of all polynomials of degree 3 or less
+		\item $V = \{ (x_1,x_2,x_3,x_4,0): x_i \in \mathbb{R}\}$ (subspace of $\mathbb{R}^5)$
+	\end{enumerate}
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the kernel of the linear transformation
+	
+	$$
+	T: P_2 \to P_1, T(a_0 + a_1 x + a_2 x^2) = a_1 + 2a_2 x
+	$$
+	
+\end{tcolorbox}
+
+$$
+T(a_0 + a_1 x+ a_2 x^2) = a_1 + 2a_2 x = \bm{0}
+$$
+
+$$
+\begin{cases}
+	a_1 = 0 \\ 2a_2 = 0 
+\end{cases}
+\implies a_1 = a_2 = 0
+$$
+
+\noindent This implies that $a_0$ can be any $\mathbb{R}$. Therefore,
+
+$$
+\ker (T)  = \{ a_0: a_0 \in \mathbb{R}\}
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the kernel of the linear transformation
+	
+	$$
+	T: \mathbb{R}^2 \to \mathbb{R}^2, T(x,y) = (x+2y, y-x)
+	$$
+\end{tcolorbox}
+
+$$
+T(x,y) = (x+2y, y-x) = (0,0)
+$$
+
+$$
+\begin{cases}
+	x+2y = 0 \\ -x+y = 0
+\end{cases} \implies \begin{bmatrix} 1 & 2 & 0 \\ -1 & 1 & 0 \end{bmatrix} \xrightarrow{R_1 + R_2 \to R_2}	\begin{bmatrix} 1 & 2 & 0 \\ 0 &3 & 0 \end{bmatrix} 
+$$
+
+$$
+3y = 0 \implies y = 0 \implies x = 0
+$$
+
+\noindent Therefore, 
+$$\ker(T) = \{ (0,0)\}$$\\
+
+\begin{tcolorbox}[colframe = lightred]
+	Define the linear transformation $T$ by $T(x) = Ax$. Find (a) the kernel of $T$ and (b) the range of $T$.
+	
+	$$
+	A = \begin{bmatrix} 1 &2  \\ 3 &4 \end{bmatrix}
+	$$
+\end{tcolorbox}
+
+\paragraph{a.}
+
+$$
+T(v) = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix} 
+$$
+
+$$
+\begin{cases}
+	v_1 + 2v_2 = 0 \\ 3v_1  + 4v_2 = 0 
+\end{cases} \implies \begin{bmatrix} 1 &2 & 0 \\ 3 & 4 & 0 \end{bmatrix} \xrightarrow{RREF} \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \end{bmatrix} \implies v_1 = v_2 = 0 \implies \ker(T) = \{ (0,0)\}
+$$
+
+\paragraph{b.} 
+
+$$
+A^T = \begin{bmatrix} 1 & 3 \\ 2 & 4 \end{bmatrix} \xrightarrow{RREF} \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} 
+$$
+
+\noindent Therefore, a basis for the range is $\left\{\begin{bmatrix} 1 \\ 0 \end{bmatrix} , \begin{bmatrix} 0 \\ 1 \end{bmatrix}\right\}$ and the $range(T) = span \left\{ \begin{bmatrix}  1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \end{bmatrix}\right\}$
+
+\begin{tcolorbox}[colframe = lightred]
+	Define the linear transformation $T$ by $T(x) = Ax$. Find (a) the kernel of $T$ and (b) the range of $T$.
+	
+	$$
+	A = \begin{bmatrix} 1 & 2 & -1 & 4 \\ 3 & 1 & 2 & -1 \\ -4 & -3 & -1 & -3 \\ -1 & -2 & 1 & 1 \end{bmatrix}
+	$$
+\end{tcolorbox}
+
+\paragraph{a.}
+
+$$
+T(v) = \begin{bmatrix}  1 & 2 & -1 & 4 \\ 3 & 1 & 2 & -1 \\ -4 & -3 & -1 & -3 \\ -1 & -2 & 1 & 1 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \\ v_3 \\ v_4 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}
+$$
+
+$$
+\begin{bmatrix} 1 & 2 & -1 & 4 & 0 \\ 3 & 1 & 2 & -1 & 0 \\ -4 & -3 & -1 & -3 & 0 \\ -1 & -2 & 1 & 1 & 0 \end{bmatrix} \xrightarrow{RREF} \begin{bmatrix} 1 & 0 & 1 & 0 & 0 \\ 0 & 1 & -1 &0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 \end{bmatrix} \implies \begin{cases} v_1 = -v_3 \\ v_2 = v_3 \\ v_4 = 0 \end{cases} \implies \left\{ \begin{bmatrix} -t \\ t \\ t \\ 0 \end{bmatrix} \right\}
+$$
+
+\noindent Therefore, 
+
+$$
+\ker(T) = \left\{ \begin{bmatrix} -t \\ t \\ t \\ 0 \end{bmatrix} \right\}
+$$
+
+\noindent and a basis for $\ker(T)$ is
+
+$$
+\ker(T) = \left\{ \begin{bmatrix} -1 \\ 1 \\ 1 \\ 0 \end{bmatrix} \right\}
+$$
+
+\paragraph{b.} 
+
+$$
+A^T = \begin{bmatrix} 1 & 3 & -4 & -1 \\ 2 & 1 & -3 & -2 \\ -1 & 2 & -1 & 1 \\ 4 & -1 & -3 & 1 \end{bmatrix} \xrightarrow{RREF} \begin{bmatrix} 1 & 0 & -1 & 0 \\ 0 & 1 & -1 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 \end{bmatrix}
+$$
+
+\noindent Therefore, 
+
+$$
+Range(T) = span \{ (1,0,-1,0), (0, 1,-1,0), (0,0,0,1)\}
+$$
+
+\noindent and the basis for the range of $T$ is 
+
+$$
+\left\{ \begin{bmatrix} 1 \\ 0\\ -1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\1 \\ -1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 0 \\ 0 \\ 1\end{bmatrix} \right\}
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Define the linear transformation $T$ by $T(x) = Ax$. Find (a) the $\ker(T)$, (b) $nullity(T)$, (c) range of $T$, and (d) $rank(T)$.
+	
+	$$
+	\begin{bmatrix} 5 & -3 \\ 1 & 1 \\ 1 & -1 \end{bmatrix}
+	$$
+\end{tcolorbox}
+
+\paragraph{a.} 
+
+$$
+T(x) = \begin{bmatrix} 5 & -3 \\ 1  & 1 \\ 1 & -1 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+$$
+
+$$
+\begin{bmatrix}5 & -3 & 0 \\ 1 & 1 & 0 \\ 1 & -1 & 0 \end{bmatrix} \xrightarrow{RREF} \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix} \implies x_1 = x_2 = 0 \implies \ker(T) = \{ (0,0)\}
+$$
+
+\paragraph{b.} 
+
+$$
+nullity(T) = \dim(\ker(T)) = 0
+$$
+
+\paragraph{c.}
+
+$$
+A^T = \begin{bmatrix} 5 & 1 & 1 \\ -3 & 1 & -1  \end{bmatrix} \xrightarrow{RREF} \begin{bmatrix} 1 & 0 & \frac{1}{4} \\  0& 1 & -\frac{1}{4} \end{bmatrix}
+$$
+
+\noindent A basis for the range of $T$ is 
+
+$$
+\left\{ \begin{bmatrix} 1 \\ 0 \\ \frac{1}{4} \end{bmatrix}, \begin{bmatrix} 0 \\1 \\ -\frac{1}{4} \end{bmatrix} \right\} = \left\{ \begin{bmatrix} 4 \\ 0 \\ 1 \end{bmatrix}, \begin{bmatrix} 0 \\ 4 \\ -1 \end{bmatrix} \right\}
+$$
+
+$$
+range(T) = \left\{ t\begin{bmatrix} 4 \\ 0 \\ 1 \end{bmatrix} + r \begin{bmatrix} 0 \\ 4 \\ -1 \end{bmatrix}\right\} = \left\{ (4t,4r,t-r)\right\}
+$$
+
+\paragraph{d.}
+
+$$
+Rank(T)= 2
+$$
+
+\section{Matrices for Linear Transformations}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Standard Matrix for a Linear Transformation]
+	Let $T: \mathbb{R}^n \to \mathbb{R}^m$ be a linear transformation such that, for the standard basis vectors $\bm{e_i}$ of $\mathbb{R}^n$,
+	
+	$$
+	T(\bm{e_1}) = \begin{bmatrix} a_{11} \\ a_{21} \\  \vdots \\ a_{m1} \end{bmatrix}, \quad T(\bm{e_2}) = \begin{bmatrix} a_{12} \\ a_{22} \\ \vdots \\ a_{m2} \end{bmatrix}, \quad \hdots, \quad T(\bm{e_n}) = \begin{bmatrix} a_{1n} \\ a_{2n} \\ \vdots \\ a_{mn} \end{bmatrix}
+	$$
+	
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Composition of Linear Transformations]
+	Let $T_1: \mathbb{R}^n \to \mathbb{R}^m$ and $T_2: \mathbb{R}^m \to \mathbb{R}^p$ be linear transformations with standard matrices $A_1$ and $A_2$, respectively. The \textbf{composition} $T: \mathbb{R}^n \to \mathbb{R}^p$, defined by $T(\bm{v}) = T_2 (T_1 (\bm{v}))$, is a linear transformationl. Moreover, the standard matrix $A$ for $T$ is the matrix product 
+	
+	$$
+	A = A_2 A_1 
+	$$
+\end{tcolorbox}
+
+\end{document}
+
