@@ -2887,5 +2887,638 @@ $$
 	$$
 \end{tcolorbox}
 
+\begin{tcolorbox}[title = Definition of Inverse Linear Transformation]
+	if $T_1: \mathbb{R}^n \to \mathbb{R}^n$ and $T_2: \mathbb{R}^n \to \mathbb{R}^n$ are linear transformations such that for every $\bm{v}$ in $\mathbb{R}^n$,
+	
+	$$
+	T_2 (T_1 (\bm{v})) = \bm{v}
+	$$
+	
+	and
+	
+	$$
+	T_1 (T_2 (\bm{v})) = \bm{v}
+	$$
+	
+	then $T_2$ is the \textbf{inverse} of $T_1$, and $T_1$ is said to be \textbf{invertible}.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Existence of an Inverse Transformation]
+	Let $T: \mathbb{R}^n \to \mathbb{R}^n$ be a linear transformation with standard matric $A$. Then the conditions listed below are equivalent.
+	
+	\begin{enumerate}
+		\item $T$ is invertible
+		\item $T$ is an isomorphism
+		\item $A$ is invertible
+	\end{enumerate}
+	
+	If $T$ is invertible with standard matrix $A$, then the standard matrix for $T^{-1}$ is $A^{-1}$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Transformation Matrix for Nonstandard Bases]
+	Let $V$ and $W$ be finite-dimensional vector spaces with $B$ and $B'$, respectively, where 
+	
+	$$
+	B = \{ \bm{v_1}, \bm{v_2}, \hdots, \bm{v_n}\}
+	$$
+	
+	If $T: V \to W$ is a linear transformation such that
+	
+	$$
+	[T(\bm{v_1})]_{B'} = \begin{bmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{m1} \end{bmatrix}, [T(\bm{v_2})]_{B'} = \begin{bmatrix} a_{21} \\ a_{22} \\ \vdots \\ a_{m2} \end{bmatrix}, \hdots, [T(\bm{v_n})]_{B'} =  \begin{bmatrix} a_{1n} \\ a_{2n} \\ \vdots \\ a_{mn} \end{bmatrix}
+	$$
+	
+	then the $m \times n$ matrix whose $n$ columns correspond to $[T(\bm{v_i})]_{B'}$
+	
+	$$
+	A = 
+	\begin{bmatrix} 
+		a_{11} & a_{12} & \hdots &a_{1n} \\ a_{21} & a_{22} & \hdots & a_{2n} \\ \vdots & \vdots  & & \vdots \\ a_{m1} & a_{m2} & \hdots & a_{mn}
+	\end{bmatrix}
+	$$
+	
+	is such that $[T(\bm{v})]_{B'} = \bm{A} [\bm{v}]_B$ for every $\bm{v}$ in $V$.
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	Let $D_x: P_3 \to P_2$ be the differential operator that maps a polynomial $P$ of degree 3 or less onto its derivative $p'$. Find the matrix $D_x$ using the bases $B = \{ 1,x,x^2,x^3\}$ and $B' = \{1,x,x^2\}$
+\end{tcolorbox}
+
+$$
+D_x (1) = 0 = 0(1) + 0(x) + 0(x^2) \implies [D_x (1)]_{B'} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+$$
+
+$$
+D_x (x) = 1 = 1(1) + 0(x) + 0(x^2) \implies [D_x (x)]_{B'}	= \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} 
+$$
+	
+$$
+D_x (x^2) = 2x = 0(1) + 2(x) + 0(x^2) \implies [D_x (x^2)]_{B'} = \begin{bmatrix} 0 \\ 2 \\ 0 \end{bmatrix} 
+$$
+
+$$
+D_x(x^3) = 3x^2 = 0(1) + 0(x) = 3(x^2) \implies [D_x (x^3)]_{B'} = \begin{bmatrix} 0 \\ 0 \\ 3 \end{bmatrix}
+$$
+
+\noindent Let's test whether this works:
+
+$$
+f(x) = 4x^3 + 2x + 3  = 3 + 2x  + 0x^2 + 4x^3 = (3,2,0,4)
+$$
+
+$$
+\begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0	& 0 & 0 & 3 \end{bmatrix} \begin{bmatrix} 3 \\2 \\ 0 \\ 4 \end{bmatrix} = \begin{bmatrix}2 \\ 0 \\ 12 \end{bmatrix} = 2 + 0x +12 x^2 = \boxed{12x^2 + 2}
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the standard matrix for the linear transformatioon $T$.
+	
+	$$
+	T(x,y,z) = (3x-2z, 2y-z)
+	$$
+\end{tcolorbox}
+
+$$
+T(e_1)  = T \left( \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} \right) = \begin{bmatrix} 3 \\ 0 \end{bmatrix} \quad \quad \quad T(e_2) = T\left( \begin{bmatrix} 0 \\1 \\ 0 \end{bmatrix} \right) = \begin{bmatrix} 0 \\ 2 \end{bmatrix} \quad \quad \quad T(e_3)  = \left( \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} \right) = \begin{bmatrix} -2 \\ -1 \end{bmatrix} 
+$$
+
+$$
+\boxed{A = \begin{bmatrix} 3 & 0 & -2 \\ 0 & 2 & -1 \end{bmatrix}}
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Use the standard matrix for the linear transformation $T$ to find the image of the vector $\bm{v}$
+	
+	$$
+	T(x,y) = (x-3y,2x+y,y) \quad \quad \bm{v} = (-2,4)
+	$$
+\end{tcolorbox}
+
+$$
+T\left( \begin{bmatrix} 1 \\ 0 \end{bmatrix}\right) = \begin{bmatrix}1 \\ 2 \\ 0 \end{bmatrix} \quad \quad \quad T\left( \begin{bmatrix} 0 \\ 1 \end{bmatrix}\right) = \begin{bmatrix} -3 \\ 1 \\ 1 \end{bmatrix} 
+$$
+
+$$
+A = \begin{bmatrix} 1 & -3 \\ 2 & 1 \\ 0 & 1 \end{bmatrix} \implies T(\bm{v}) = \begin{bmatrix} 1 & -3 \\ 2 & 1  \\ 0 & 1 \end{bmatrix} \begin{bmatrix}-2 \\ 4 \end{bmatrix} = \begin{bmatrix} -14 \\ 0 \\ 4 \end{bmatrix}
+$$
+
+\noindent Just to check:
+
+$$
+T(\bm{v}) = (-2-3(4), 2(-2) + 4, 4) = (-14,0,4)
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	(a) Find the standard matrix $A$ for the linear transformation $T$ and (b) use $A$ to find the image of the vector $\bm{v}$. \\
+	
+
+	
+	$T$ is the reflection in the $xy$-coordinate plane in $\mathbb{R}^3: T(x,y,z) = (x,y,-z) \quad \quad \quad \bm{v} = (3,2,2)$
+\end{tcolorbox}
+
+$$
+T \left( \begin{bmatrix}1 \\ 0 \\ 0 \end{bmatrix} \right) = \begin{bmatrix}1 \\ 0 \\ 0 \end{bmatrix} \quad T\left( \begin{bmatrix} 0 \\1 \\ 0 \end{bmatrix} \right) = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} \quad T\left( \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} \right) = \begin{bmatrix} 0 \\ 0 \\ -1 \end{bmatrix}
+$$
+
+$$
+\implies A = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -1 \end{bmatrix} \implies  \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -1 \end{bmatrix} \begin{bmatrix} 3 \\ 2 \\ 2 \end{bmatrix} = \begin{bmatrix} 3 \\ 2 \\ -2 \end{bmatrix} \implies T(\bm{v}) = (3,2,-2)
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	(a) Find the standard matrix $A$ for the linear transformation $T$ and (b) use $A$ to find the image of the vector $\bm{v}$. \\
+	
+	
+	
+	$T$ is the projection onto the vector $\bm{w} = (3,1)$ in $\mathbb{R}^2$: $T(\bm{v}) = proj_w \bm{v} \quad \bm{v} = (1,4)$
+\end{tcolorbox}
+
+\paragraph{a.}
+
+$$
+T(\bm{v}) = proj_{\bm{w}} \bm{v} = \frac{\bm{v} \cdot \bm{w}}{\bm{w} \cdot \bm{w}} \bm{w} = \frac{(x,y) \cdot (3,1)}{(3,1) \cdot (3,1)} (3,1) = \frac{3x+y}{10} (3,1) = \left( \frac{3}{10} (3x+y), \frac{1}{10} (3x+y) \right)
+$$
+
+$$
+T(e_1) = T \left( \begin{bmatrix} 1 \\ 0 \end{bmatrix} \right)  = \begin{bmatrix} \frac{9}{10} \\ \frac{3}{10} \end{bmatrix} \quad \quad T(e_2) = T \left( \begin{bmatrix} 0 \\ 1 \end{bmatrix} \right)  = \begin{bmatrix} \frac{3}{10} \\ \frac{1}{10} \end{bmatrix}
+$$
+
+$$
+A = \begin{bmatrix} \frac{9}{10} & \frac{3}{10} \\ \frac{3}{10} & \frac{1}{10} \end{bmatrix}
+$$
+
+\paragraph{b.}
+
+$$
+\begin{bmatrix} \frac{9}{10} & \frac{3}{10} \\ \frac{3}{10} & \frac{1}{10} \end{bmatrix} \begin{bmatrix} 1 \\ 4 \end{bmatrix} = \begin{bmatrix} \frac{21}{10} \\ \frac{7}{10} \end{bmatrix} \implies T(\bm{v}) = \left(\frac{21}{10}, \frac{7}{10} \right)
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Determine whether linear transformation is invertible. If it is, find its inverse. 
+	
+	$$
+	T(x_1, x_2, x_3) = (x_1, x_1 + x_2, x_1 + x_2 + x_3) 
+	$$
+\end{tcolorbox}
+
+$$
+T(e_1) = T \left( \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}\right) = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \quad \quad T(e_2) = T \left( \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} \right)  \quad \quad T(e_3) = T\left( \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} \right) = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} \implies A = \begin{bmatrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{bmatrix} 
+$$
+
+$$
+| A | = \begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix} = 1 \ne 0
+$$
+
+\noindent Therefore, $A$ is invertible.
+
+$$
+A^{-1} = \begin{bmatrix} 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & -1 & 1 \end{bmatrix} 
+$$
+
+$$
+\begin{bmatrix} 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & -1 & 1 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} x_1 \\ -x_1 + x_2 \\ -x_2 + x_3 \end{bmatrix}
+$$
+
+$$
+T^{-1} (x_1, x_2, x_3) = (x_1, x_2 - x_1, x_3 - x_2)
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Find $T(\bm{v})$ by using (a) the standard matrix and (b) the matrix relative to $B$ and $B'$.
+	
+	$$
+	T: \mathbb{R}^3 \to \mathbb{R}^3, T(x,y,z) = (x+y+z, 2z-x, 2y-z) \quad \quad \bm{v} = (4,-5,10) \quad \quad B  = \{ (2,0,1), (0,2,1), (1,2,1)\}
+	$$
+	
+	$$
+	B' = \{ (1,1,1), (1,1,0), (0,1,1)\}
+	$$
+\end{tcolorbox}
+
+\paragraph{a.}
+
+$$
+T \left( \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} \right)= \begin{bmatrix} - 1 \\  1 \\ 0 \end{bmatrix} \quad \quad T \left( \begin{bmatrix} 0 \\1 \\ 0 \end{bmatrix}\right) = \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix} \quad \quad T \left( \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} \right) = \begin{bmatrix} 1 \\ 2 \\ -1 \end{bmatrix} 
+$$
+
+$$
+T(\bm{v}) = \begin{bmatrix} 1 & 1 & 1 \\ -1 & 0 & 2 \\ 0 & 2 &-1 \end{bmatrix} \begin{bmatrix} 4 \\ -5 \\ 10 \end{bmatrix} = \begin{bmatrix} 9 \\ 16 \\ -20 \end{bmatrix} = A \bm{v}
+$$
+
+\paragraph{b.}
+
+$$
+T \left( \begin{bmatrix} 2 \\ 0 \\ 1 \end{bmatrix} \right) = \begin{bmatrix} 3 \\ 0 \\ -1 \end{bmatrix} = 2 \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} + 1 \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} -3 \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} 
+$$
+
+$$
+T \left( \begin{bmatrix} 0 \\ 2 \\ 1 \end{bmatrix} \right) = \begin{bmatrix} 3 \\ 2 \\ 3 \end{bmatrix} = 4 \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} + (-1) \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} + (-1) \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}
+$$
+
+$$
+T \left( \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix} \right) = \begin{bmatrix} 4 \\ 1 \\ 3 \end{bmatrix} = 6 \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} + (-2) \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} + (-3) \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} 
+$$
+
+$$
+\begin{bmatrix} 2 & 4 & 6 \\ 1 & -1 & -2 \\ -3 & -1 & -3 \end{bmatrix} 
+$$
+
+$$
+A^{*} = \begin{bmatrix} 2 & 4 & 6 \\ 1 & -1 & -2 \\ -3 & -1 & -3 \end{bmatrix} 
+$$
+
+$$
+\bm{v} = \begin{bmatrix} 4 \\ -5 \\ 10 \end{bmatrix} = \frac{25}{2} \begin{bmatrix} 2 \\ 0 \\ 1 \end{bmatrix} + \frac{37}{2} \begin{bmatrix} 0 \\ 2 \\ 1 \end{bmatrix} + 21 \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix} \implies [\bm{v}]_{B} = \begin{bmatrix} \frac{25}{2} \\ \frac{37}{2} \\ 21 \end{bmatrix}
+$$
+
+$$
+[T(\bm{v})]_{B'} = A^{*} [\bm{v}]_{B} = \begin{bmatrix} 2 & 4 & 6 \\ 1 & -1 & -2 \\ -3 & -1 & -3 \end{bmatrix} \begin{bmatrix} \frac{25}{2} \\ \frac{37}{2} \\ 21 \end{bmatrix} = \begin{bmatrix} -27 \\ 36 \\ 7 \end{bmatrix} \implies [\bm{v}]_{B'} = -27 \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}+ 36 \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}+ 7 \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}= \begin{bmatrix} 9 \\ 16 \\ -20 \end{bmatrix}
+$$
+
+\section{Transition Matrices and Similarity}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definition of Similar Matrices]
+	For square matrices $A$ and $A'$ of order $n$, $A'$ is \textbf{similar} to $A$ when there exists an invertible matrix $P$ such that $A' = P^{-1} AP$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Properites of Similar Matrices]
+	Let $A$, $B$, and $C$ be square matrices of order $n$. Then the properties below are true.
+	
+	\begin{enumerate}
+		\item $A$ is similar to $A$
+		\item If $A$ is similar to $B$, then $B$ is similar to $A$
+		\item If $A$ is similar to $B$ and $B$ is similar to $C$, then $A$ is similar to $C$
+	\end{enumerate}
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the matrix $A'$ for $T$ relative to the basis $B'$
+	
+	$$
+	T: \mathbb{R}^2 \to \mathbb{R}^2, T(x,y) = (x+y, 4y) \quad \quad B' = \{ (-4,1),(1,-1)\}
+	$$
+\end{tcolorbox}
+
+\noindent Let's first find the standard matrix for $T$:
+
+$$
+T(e_1)  = T \left( \begin{bmatrix} 1 \\ 0 \end{bmatrix} \right) = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \quad \quad T(e_2) = T \left( \begin{bmatrix} 0 \\ 1 \end{bmatrix} \right) = \begin{bmatrix} 1 \\ 4 \end{bmatrix} 
+$$
+
+$$
+\implies A = \begin{bmatrix} 1 & 1 \\ 0 & 4 \end{bmatrix} \quad \quad \begin{bmatrix} -4 & 1 & 1 & 0 \\ 1 & -1 & 0 & 1 \end{bmatrix} \xrightarrow{RREF} \begin{bmatrix} 1 & 0 & -\frac{1}{3} & -\frac{1}{3} \\ 0 & 1 & -\frac{1}{3} & -\frac{4}{3} \end{bmatrix} 
+$$
+
+$$
+P^{-1} = \begin{bmatrix} -\frac{1}{3} & -\frac{1}{3} \\ -\frac{1}{3} & -\frac{4}{3} \end{bmatrix}
+$$
+
+\noindent This is the transition matrix from $B$ to $B'$. Therefore, $P$ is the transition matrix from $B'$ to $B$.
+
+$$
+P = \left( \begin{bmatrix} -\frac{1}{3} & -\frac{1}{3} \\ -\frac{1}{3} & -\frac{4}{3} \end{bmatrix} \right)^{-1} = \begin{bmatrix}-4 & 1 \\ 1 & -1 \end{bmatrix} \implies A' = P^{-1} A P = \begin{bmatrix} -\frac{1}{3} & \frac{4}{3} \\ -\frac{13}{3} & \frac{16}{3} \end{bmatrix} 
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the matrix $A'$ for $T$ relative to the basis $B'$
+	
+	$$
+	T: \mathbb{R}^2 \to \mathbb{R}^2, T(x,y) = (-3x+y, 3x-y) \quad \quad B' = \{ (1,-1), (-1,5)\}
+	$$
+\end{tcolorbox}
+
+$$
+T \left( \begin{bmatrix}1 \\ 0 \end{bmatrix} \right) = (-3,3) \quad \quad T \left( \begin{bmatrix} 0 \\ 1 \end{bmatrix} \right) = (1,-1) \implies A = \begin{bmatrix} -3 & 1 \\ 3 & -1 \end{bmatrix} 
+$$
+
+$$
+P = \begin{bmatrix} 1 & 0 & 1 & -1 \\ 0 & 1 & -1 & 5 \end{bmatrix} \implies P = \begin{bmatrix}1 & -1 \\ -1 & 5 \end{bmatrix}
+$$
+
+$$
+P^{-1} = \begin{bmatrix} \frac{5}{4} & \frac{1}{4} \\ \frac{1}{4} & \frac{1}{4} \end{bmatrix} \implies  A' = P^{-1} A P = \begin{bmatrix}-4 & 8 \\ 0 & 0 \end{bmatrix}
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Show that the matrices $A$ and $A'$ are similar
+	
+	$$
+	P = \begin{bmatrix} -1 & -1 \\ 1 &2 \end{bmatrix} \quad \quad A = \begin{bmatrix} 12 & 7 \\ -20 & -11 \end{bmatrix} \quad \quad A' = \begin{bmatrix} 1 & -2 \\ 4 & 0 \end{bmatrix}
+	$$
+\end{tcolorbox}
+
+$$
+A' = P^{-1} A P
+$$
+
+$$
+P^{-1} A P = \begin{bmatrix} -2 & -1 \\ 1 & 1 \end{bmatrix} \begin{bmatrix} 12 & 7 \\ -20 & -11 \end{bmatrix} \begin{bmatrix} -1 & -1 \\ 1 & 2 \end{bmatrix} = \begin{bmatrix} -4 & -3 \\ -8 & -4 \end{bmatrix} \begin{bmatrix} -1 & -1 \\ 1 & 2 \end{bmatrix} = \begin{bmatrix} 1 & -2 \\ 4 & 0 \end{bmatrix} = A'
+$$
+
+\noindent Therefore, $A$ and $A'$ are similar.
+
+\chapter{Unit 7}
+
+\section{Eigenvalues and Eigenvectors}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definitions of Eigenvalue and Eigenvector]
+	Let $A$ be an $n \times n$ matrix. The scalar $\lambda$ is an \textbf{eigenvalue} of $A$ when there is a nonzero vector $\bm{x}$ such that $A\bm{x} = \lambda+ \bm{x}$. The vector $\bm{x}$ is an \textbf{eigenvector} of $A$ corresponding to $\lambda$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Eigenvectors of $\lambda$ Form a Subspace]
+	If $A$ is an $n \times n$ matrix with an eigenvalue $\lambda$, then the set of all eigenvectors of $\lambda$, together with the zero vector
+	
+	$$
+	\{\bm{x}: \bm{x}  \, \text{is an eigenvector of} \,  \lambda\} \cup \{0\}
+	$$
+	
+	is a subspace of $\mathbb{R}^n$. This subspace is the \textbf{eigenspace} of $\lambda$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Eigenvalues and Eigenvectors of a Matrix]
+	Let $A$ be an $n \times n$ matrix.
+	
+	\begin{enumerate}
+		\item An eigenvalue of $A$ is a scalar $\lambda$ such that $\det{(\lambda I - A)} = 0$.
+		\item The eigenvectors of $A$ corresponding to $\lambda$ are the nonzero solutions of $(\lambda I - A) \bm{x} = 0$.
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Finding Eigenvalues and Eigenvectors]
+		Let $A$ be an $n \times n$ matrix.
+		
+		\begin{enumerate}
+				\item Form the characteristic equation to $| \lambda I - A | = 0$. It will be a polynomial equation of degree $n$ in the variable $\lambda$.
+				\item Find the real roots of the characteristic equation. These are the eigenvalues of $\lambda$.
+				\item For each eigenvalue $\lambda_i$, find the eigenvectors corresponding $\lambda_i$, by solving the homogenous system $( \lambda_i I - A) \bm{x} = 0$. This can require row reducing an $n \times n$ matrix. The reduced row-echelon form must have at least one row of zeros. 
+		\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Eigenvalues of Triangular Matrix]
+	If $A$ is an $n \times n$ triangular matrix, then its eigenvalues are the entries on its main diagonal. 
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	Verify that $\lambda_i$ is an eigenvalue of $A$ and $x_i$ is a corresponding eigenvector.
+	
+	$$
+	A = \begin{bmatrix} 2 &3 & 1 \\ 0 & -1 & 2 \\ 0 & 0 & 3 \end{bmatrix} \quad \quad \begin{cases} \lambda_1, x_1 = (1,0,0) \\ \lambda_2 = -1, x_2 = (1,-1,0) \\ \lambda_3 = 3, x_3 = (5,1,2) \end{cases}
+	$$
+\end{tcolorbox}
+
+$$
+\lambda_1 = 2, x_1 = (1,0,0)
+$$
+
+$$
+\begin{bmatrix} 2 & 3 & 1 \\ 0 & -1 & 2 \\ 0 & 0 & 3 \end{bmatrix} \begin{bmatrix}1 \\ 0 \\ 0 \end{bmatrix} = \begin{bmatrix} 2 \\ 0 \\ 0 \end{bmatrix} = 2 \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} 
+$$
+
+$$
+\lambda_2 = -1,  x_2(1,-1,0)
+$$
+
+$$
+\begin{bmatrix} 2 &3 & 1 \\ 0 & -1 & 2 \\ 0 & 0 & 3 \end{bmatrix} \begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix} = \begin{bmatrix} - 1 \\ 1 \\ 0 \end{bmatrix} = (-1) \begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix} 
+$$
+
+$$
+\lambda_3 = 3, x_3 = (5,1,2)
+$$
+
+$$
+\begin{bmatrix} 2 & 3 & 1 \\ 0 & -1 & 2 \\ 0 & 0 & 3 \end{bmatrix} \begin{bmatrix} 5 \\ 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 15 \\ 3 \\ 6 \end{bmatrix} = 3 \begin{bmatrix} 5 \\ 1 \\ 2 \end{bmatrix} 
+$$\\
+
+\begin{tcolorbox}[colframe = lightred]
+	
+	Find (a) the characteristic equation and (b) the eigenvalues and corresponding eigenvectors of the matrix
+	
+	$$
+	\begin{bmatrix} 1 & -\frac{3}{2} \\ \frac{1}{2} & -1 \end{bmatrix} 
+	$$
+\end{tcolorbox}
+
+\paragraph{a.}
+
+$$
+| \lambda I - A |  = 0 
+$$
+
+$$
+\lambda I = \begin{bmatrix} \lambda & 0 \\ 0 & \lambda \end{bmatrix} \quad \quad \lambda I - A  = \begin{bmatrix} \lambda & 0 \\ 0 & \lambda \end{bmatrix} - \begin{bmatrix} 1 & -\frac{3}{2} \\ \frac{1}{2} & -1 \end{bmatrix} = \begin{bmatrix} \lambda - 1 & \frac{3}{2} \\ -\frac{1}{2} & \lambda + 1 \end{bmatrix} 
+$$
+
+$$
+= (\lambda - 1)(\lambda + 1) + \frac{3}{2} \left( \frac{1}{2} \right) = \lambda^2 - \frac{1}{4} = 0 \implies \lambda = \pm \frac{1}{2}
+$$
+
+\noindent Therefore, the characteristic equation is $\lambda^2 - \frac{1}{4} = 0$. 
+
+\paragraph{b.} 
+
+$$
+\lambda_1 = \frac{1}{2} \implies \begin{bmatrix} -\frac{1}{2} & \frac{3}{2} \\ -\frac{1}{2} & \frac{3}{2} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix} \iff \begin{bmatrix} -\frac{1}{2} & \frac{3}{2} & 0 \\ -\frac{1}{2} & \frac{3}{2} & 0 \end{bmatrix} \xrightarrow{RREF} \begin{bmatrix} 1 & -3 & 0 \\ 0 & 0 & 0 \end{bmatrix} 
+$$
+
+$$
+\implies x_1 = 3x_2 \implies \begin{bmatrix} 3t \\ t \end{bmatrix} \implies \begin{bmatrix} 3 \\ 1 \end{bmatrix} 
+$$
+
+\noindent Therefore, $\begin{bmatrix} 3 \\ 1 \end{bmatrix}$ is an eigenvector for $\lambda_1 = \frac{1}{2}$.
+
+$$
+\lambda_2 = -\frac{1}{2} \implies \begin{bmatrix} -\frac{3}{2} & \frac{3}{2} \\ -\frac{1}{2} & \frac{1}{2} \end{bmatrix} \xrightarrow{RREF} \begin{bmatrix} 1 & -1 \\ 0 & 0 \end{bmatrix} \implies x_1 = x_2 \implies \begin{bmatrix} t \\ t \end{bmatrix} \implies \begin{bmatrix} 1 \\ 1 \end{bmatrix} 
+$$
+
+\noindent Therefore, $\begin{bmatrix} 1 \\ 1 \end{bmatrix}$ is an eigenvector for $\lambda_2 = -\frac{1}{2}$.
+
+\section{Diagonalization}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definition of a Diagonalizable Matrix]
+	An $n \times n$ matrix $A$ is \textbf{diagonalizable} when $A$ is similar to a diagonal matrix. That is, $A$ is diagonalizable when there exists an invertible matrix $P$ such that $P^{-1} AP$ is a diagonal matrix.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Similar Matrices Have the Same Eigenvalues]
+	If $A$ and $B$ are similar $n \times n$ matrices, then they have the same eigenvalues.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Condition for Diagonalization]
+	An $n \times n$ matrix $A$ is diagonalizable if and only if it has $n$ lineraly independent eigenvectors. 
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Steps for Diagonalizing a Square Matrix]
+	Let $A$ be an $n \times n$ matrix.
+	
+	\begin{enumerate}
+			\item Find $n$ lineraly independent eigenvectors $\bm{p_1}, \bm{p_2}, \hdots, \bm{p_n}$ for $A$ (if possible) with corresponding eigenvalues $\lambda_1, \lambda_2, \hdots, \lambda_n$. If $n$ linearly independent eigenvectors do not exist, then $A$ is not diagonalizable.
+			
+			\item Let $P$ be the $n \times n$ mtrix whose columns consist of these eigenvectors. That is, $P = \begin{bmatrix} \bm{p_1} & \bm{p_2} & \hdots & \bm{p_n} \end{bmatrix}$
+			
+			\item The diagonal matrix $D = P^{-1} AP $ will have the eigenvalues $\lambda_1, \lambda_2, \hdots, \lambda_n$ on its main diagonal. Note that the order of the eigenvectors used to form $P$ will determine the order in which the eigenvalues appear on the main diagonal of $D$. 
+	\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Sufficient Condition for Diagonalization]
+	If an $n \times n$ matrix $A$ has $n$ distinct eigenvalues, then the corresponding eigenvectors are linearly independent and $A$ is diagonalizable. 
+\end{tcolorbox}
+
+\subsection{Examples}
+
+\begin{tcolorbox}[colframe = lightred]
+	(a) Verify that $A$ is diagonalizable by finding $P^{-1} AP$ and (b) use the result of part (a) to find eigenvalues of $A$. 
+	
+	$$
+	A = \begin{bmatrix} -11 & 36 \\ -3 & 10 \end{bmatrix} \quad P = \begin{bmatrix} -3 & -4 \\ -1 & -1 \end{bmatrix} 
+	$$
+\end{tcolorbox}
+
+\paragraph{a.} 
+
+$$
+P^{-1} AP = \begin{bmatrix} 1 & -4 \\ -1 & 3 \end{bmatrix} \begin{bmatrix} -11 & 36 \\ -3 & 10 \end{bmatrix} \begin{bmatrix} -3 & -4 \\ -1 & -1 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & -2 \end{bmatrix} = D
+$$
+
+\paragraph{b.} $A$ and $D$ are similar, therefore, they have the same eigenvalues.
+
+$$
+\lambda_1 = 1 \quad \lambda_2 = -2 
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Show that the matrix is not diagonalizable
+	
+	$$
+	\begin{bmatrix} 7 & 7 \\ 0 & 7 \end{bmatrix} 
+	$$
+\end{tcolorbox}
+
+$$
+\lambda_1 = \lambda_2 = 7
+$$
+
+\noindent Therefore, the matrix is not diagonalizable because we don't have two distinct eigenvalues. 
+
+\begin{tcolorbox}[colframe = lightred]
+	Find, is possible, a nonsingular matrix, $P$, such that $P^{-1} AP$ is diagonal. Verify that $P^{-1} AP$ is a diagonal matric with the eigenvalues along the main diagonal.
+	
+	$$
+	A = \begin{bmatrix} 2 & -2 & 3 \\ 0 & 3 & -2 \\ 0 & -1 & 2 \end{bmatrix}
+	$$
+\end{tcolorbox}
+
+$$
+| \lambda I -  A| = \begin{vmatrix} \lambda - 2 & 2 & -3 \\ 0 & \lambda -3 & 2 \\ 0 & 1 & \lambda - 2 \end{vmatrix} = (\lambda -2 ) \begin{vmatrix} \lambda -3 & 2 \\ 1 & \lambda - 2 \end{vmatrix} = (\lambda - 2)\left( (\lambda - 3)(\lambda -2) - 2\right)
+$$
+
+$$
+= (\lambda - 2)(\lambda^2 - 5\lambda + 6 -2) = (\lambda-2)(\lambda-4)(\lambda-1) \implies \lambda_1 = 1 \quad \lambda_2 = 2 \quad \lambda_3 = 4
+$$
+
+$$
+\lambda = 2 \implies \begin{bmatrix} 0 & 2 & -3 \\ 0 & -1 & 2 \\ 0 & 1 & 0 \end{bmatrix}\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+$$
+
+$$
+\begin{bmatrix} 0 & 2 & -3 & 0 \\ 0 & -1 & 2 & 0 \\ 0 & 1 & 0 & 0 \end{bmatrix} \xrightarrow{RREF} \begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \implies x_1 = t \quad x_2 = x_3 = 0
+$$
+
+\noindent Therefore, 
+
+$$
+\begin{bmatrix} t \\ 0 \\ 0 \end{bmatrix} = t \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} \implies \text{an eigenvector associated with } \lambda_2 = 2 \text{ is } \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}
+$$
+
+$$
+\lambda_3 = 4 \implies \begin{bmatrix} 2 & 2 & -3 \\ 0 & 1 & 2 \\ 0 & 1 & 2 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+$$
+
+$$
+\begin{bmatrix} 2 & 2 & -3 & 0 \\ 0 & 1 & 2 & 0 \\ 0 & 1 & 2 & 0 \end{bmatrix} \xrightarrow{RREF} \begin{bmatrix} 1 & 0 & -\frac{7}{2} & 0 \\ 0 & 1 & 2 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \implies x_1 = \frac{7}{2} \quad x_2 = -2 \quad x_3 = 1 
+$$
+
+\noindent Therefore, 
+
+$$
+\begin{bmatrix} 7 \\ -4 \\ 2 \end{bmatrix} \text{ is an eigenvector associated with } \lambda_3 = 4 
+$$
+
+For $\lambda_1$ we will assume the same process as before, but rather than documenting all of the work, I will give the result. The result is $\lambda_3 = \begin{bmatrix} -1 \\ 1 \\ 1 \end{bmatrix}$. Therefore,
+
+$$
+P = \begin{bmatrix} -1 & 1 & 7 \\ 1 & 0 & -4 \\ 1 & 0 & 2 \end{bmatrix} \implies P^{-1} AP = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 4 \end{bmatrix} 
+$$
+
+\begin{tcolorbox}[colframe = lightred]
+	Find the eigenvalues of the matrix and determine whether there is a sufficient number of eigenvalues to guarantee that the matrix is diagonalizable.
+	
+	$$
+	A = \begin{bmatrix} -2 & -1 & 3 \\ 0 & 1 & 2 \\ 0 & 0 & 1 \end{bmatrix} 
+	$$
+\end{tcolorbox}
+
+$$
+\lambda_1 = -2 \quad \lambda_2 = 1 \quad \lambda_3 = 1 
+$$
+
+\noindent Therefore, it is not diagonalizable because we have only two distinct eigenvalues. We require three. 
+
+\section{Symmetric Matrices and Orthogonal Diagonalization}
+
+\subsection{Theory}
+
+\begin{tcolorbox}[title = Definition of a Symmetric Matrix]
+	A square matrix $A$ is \textbf{symmetric} when it is equal to its transpose: $A = A^T$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Properties of Symmetric Matrices]
+	If $A$ is an $n \times n$ symmetric matrix, then the properties listed below are true.
+	
+	\begin{enumerate}
+		\item $A$ is diagonalizable
+		\item All eigenvalues of $A$ are real
+		\item If $\lambda$ is an eigenvalue of $A$ with multiplicity $k$, then $\lambda$ has $k$ linearly independent eigenvectors. That is, the eigenspace of $\lambda$ has dimension $k$.
+	\end{enumerate}
+	
+	\paragraph{Remark:} This is called the \textbf{Real Spectrum Theorem}, and the set of eigenvalues of $A$ is called the \textbf{spectrum} of $A$
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Definition of a Orthogonal Matrix]
+	A square matrix $P$ is \textbf{orthogonal} when it is invertible and $P^{-1} = P^T$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Property of Orthogonal Matrices]
+	An $n \times n$ matrix $P$ is orthogonal iff its column vectors form an orthonormal set.	
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Property of Symmetric Matrices]
+	Let $A$ be an $n \times n$ symmetric matrix. If $\lambda_1$ and $\lambda_2$ are distinct eigenvalues of $A$, then their corresponding eigenvectors $\bm{x_1}$ and $\bm{x_2}$ are orthogonal.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Orthogonal Diagonolization of a Symmetric Matrix]
+	Let $A$ be an $n \times n$ symmetric matrix.
+	
+	\begin{enumerate}
+		\item Find all eigenvalues of $A$ and determine the multiplicity of each
+		\item For each eigenvalue of multiplicty 1, find a unit eigenvector. 
+		\item For each eigenvalue of multiplicity $k \ge 2$, find a set $k$ of linearly independent eigenvectors. If this set is not orthonormal, then apply the Gram-Schmidt orthonormalization process.
+		\item The results of steps 2 and 3 produce an orthonormal set of $n$ eigenvectors. Use these eigenvectors to form the columns of $P$. The matrix $P^{-1} AP = P^T AP = D$ will be diagonal.
+	\end{enumerate}
+\end{tcolorbox}
+
+\subsection{Examples]
+	
+
 \end{document}
 
